@@ -17,7 +17,7 @@ const (
 3. Add Items.
 4. Modify Items.
 5. Delete Items.
-Select your choice:`
+Select your choice: `
 
 	report = `  
 Generate Report
@@ -25,7 +25,7 @@ Generate Report
 2. List of item by category.
 3. Main Menu.
 
-Choose your report:`
+Choose your report: `
 
 	eachCatCost = `  
 Total cost by Category.
@@ -63,11 +63,7 @@ func main() {
 		"Sprite": item7,
 	}
 
-	// for item, info := range itemsName {
-
-	// 	fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
-
-	// }
+	// The shopping list menu on runtime prompt and allow the user to make a selection.
 
 	fmt.Println(title)
 	fmt.Println(strings.Repeat("=", 25))
@@ -79,6 +75,8 @@ func main() {
 
 	var info itemInfo
 
+	//  View Entire Shopping List
+
 loop1:
 	for listScan.Scan() {
 
@@ -89,9 +87,12 @@ loop1:
 			for item, info = range itemsName {
 
 				fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
+
 			}
 
-		} else if scanInputList == 3 {
+			goto loop1
+
+		} else if scanInputList == 3 { // Add Items to the List
 
 			var word string
 			var num1 int
@@ -109,7 +110,7 @@ loop1:
 			fmt.Println("How much does it cost per unit?")
 			fmt.Scanln((&num2))
 
-		} else if scanInputList == 4 {
+		} else if scanInputList == 4 { // Modify items in the List
 
 			var inputItem, newName, newCategory string
 
@@ -151,17 +152,29 @@ loop1:
 				}
 
 			}
+		} else if scanInputList == 5 { // Delete Items from the List
 
-			// for item, info = range itemsName {
+			var deleteItemName string
 
-			// 	if word == item {
+			fmt.Println("Delete Item.")
+			fmt.Println("Enter item name to delete:")
+			fmt.Scanln(&deleteItemName)
 
-			// 		fmt.Printf("Current item is %s - Category is %s  - Quantity is %d - Unit Cost %0.f\n", word, category[info.itemCategory], info.quantity, info.unitCost)
-			// 	}
+			for item, info = range itemsName {
 
-			// }
+				if deleteItemName == item {
 
-		} else if scanInputList == 2 {
+					fmt.Printf("Deleted %s\n", deleteItemName)
+
+					return
+
+				}
+
+			}
+
+			fmt.Println("Item not found. Nothing to delete!")
+
+		} else if scanInputList == 2 { // Generate Shopping List Report
 
 			fmt.Println(strings.TrimSpace(report))
 
@@ -174,18 +187,18 @@ loop1:
 
 				scanInputReport, _ := strconv.Atoi(reportScan.Text())
 
-				if scanInputReport == 1 {
+				if scanInputReport == 1 { // Report of Total cost of each category
 
 					fmt.Println(strings.TrimSpace(eachCatCost))
 
-				} else if scanInputReport == 2 {
+				} else if scanInputReport == 2 { // List of item by category
 
 					for item, info := range itemsName {
 
 						fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
 
 					}
-				} else if scanInputReport == 3 {
+				} else if scanInputReport == 3 { // Main Menu
 
 					fmt.Println(title)
 					fmt.Println(strings.Repeat("=", 25))
@@ -201,4 +214,5 @@ loop1:
 
 		}
 	}
+
 }
