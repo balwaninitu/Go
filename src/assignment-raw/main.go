@@ -90,8 +90,6 @@ loop1:
 
 			}
 
-			goto loop1
-
 		} else if scanInputList == 3 { // Add Items to the List
 
 			var word string

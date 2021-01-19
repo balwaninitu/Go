@@ -15,10 +15,13 @@ func main() {
 		fmt.Printf("%d is odd\n", num)
 	}
 
-	if num > 10 {
+	if num >= 10 {
 
 		fmt.Printf("%d  have more than 1 digit\n", num)
 
+	} else {
+
+		fmt.Println("It has only one digit")
 	}
 
 }

@@ -70,11 +70,11 @@ func main() {
 
 	//var v string
 
-	for i, v := range category {
+	for i := range category {
 
-		addNewCategory = v
+		i = addNewCategory
 
-		if addNewCategory == v {
+		if addNewCategory == i {
 
 			fmt.Printf("Category: %s already exixst at index %d", addNewCategory, i)
 

@@ -43,6 +43,9 @@ func main() {
 	} else if arithFunc == arithFunc4 {
 
 		fmt.Println("Final result:", inputVal1/inputVal2)
+	} else {
+
+		fmt.Println("Invalid input")
 	}
 
 }

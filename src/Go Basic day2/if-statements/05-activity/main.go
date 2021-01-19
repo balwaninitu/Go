@@ -1,16 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 
-	var year int
+	var year string
 
 	fmt.Println("Please enter year")
 
 	fmt.Scanln(&year)
 
-	if year%4 == 0 && (year%100 != 0 || year%400 == 0) {
+	yearInt, _ := strconv.ParseInt(year, 10, 0)
+
+	if yearInt%4 == 0 && (yearInt%100 != 0 || yearInt%400 == 0) {
 
 		fmt.Println("Given year is leap year")
 	} else {

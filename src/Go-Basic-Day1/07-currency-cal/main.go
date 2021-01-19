@@ -39,6 +39,6 @@ func main() {
 
 	fmt.Println("Number of two dollar notes: ", math.Floor(totalAmt)/2)
 
-	fmt.Println("Remaining change: ", math.Mod(totalAmt, float64(2)))
+	fmt.Println("Remaining change: ", math.Mod(float64(totalAmt), float64(2)))
 
 }

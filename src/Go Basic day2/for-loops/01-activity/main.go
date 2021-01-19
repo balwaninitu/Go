@@ -11,7 +11,7 @@ func main() {
 		fmt.Println("Numbers", i)
 	}
 
-	for i = 0; i < 1000; i++ {
+	for i = 0; i <= 1000; i++ {
 
 		if i%2 == 0 {
 
@@ -21,7 +21,7 @@ func main() {
 
 	}
 
-	for i = 0; i < 1000; i++ {
+	for i = 0; i <= 1000; i++ {
 
 		if i%2 != 0 {
 

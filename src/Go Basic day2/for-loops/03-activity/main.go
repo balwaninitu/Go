@@ -28,10 +28,11 @@ func main() {
 		if i%2 == 0 {
 
 			fmt.Printf("Even numbers : %d\n", i)
+		}
 
-		} else {
+		if i%2 != 0 {
 
-			fmt.Printf("Odd numbers : %d\n", i)
+			defer fmt.Printf("Odd numbers : %d\n", i)
 		}
 
 	}

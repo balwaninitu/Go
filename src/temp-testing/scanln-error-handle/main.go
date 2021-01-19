@@ -14,14 +14,14 @@ const (
 3. Add Items.
 4. Modify Items.
 5. Delete Items.
-Select your choice : `
+Select your choice(pick desired number):`
 
 	report = `  
 Generate Report
 1. Total Cost of each category.bufio
 2. List of item by category.
 3. Main Menu.
-Choose your report : `
+Choose your (pick desired number):`
 
 	eachCatCost = `  
 Total cost by Category.
@@ -58,30 +58,29 @@ func main() {
 		"Coke":   item6,
 		"Sprite": item7,
 	}
-	// List menu in infinite loop
+
 	for {
 		userShoppingListMenuInput := displayShoppingListMenu()
 		userChoiceAction(userShoppingListMenuInput, itemsName, category)
 	}
-
 }
 
-// function to display List menu to user
 func displayShoppingListMenu() int {
 	fmt.Println()
 	fmt.Println(title)
 	fmt.Println(strings.Repeat("=", 25))
 	fmt.Print(strings.TrimSpace(shoppingListMenu))
 	var userShoppingListMenuInput int
-	fmt.Scanln(&userShoppingListMenuInput)
+	if _, err := fmt.Scanln(&userShoppingListMenuInput); err != nil {
+		fmt.Println("Enter number")
+	}
 
 	return userShoppingListMenuInput
 }
 
-// displya to user based on choice selected
 func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemInfo, category []string) {
 	switch userShoppingListMenuInput {
-	case 1: // Disply Entire shopping List
+	case 1:
 		var item string
 		var info itemInfo
 		fmt.Println("\nShopping List Contents:")
@@ -89,7 +88,8 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
 		}
 
-	case 2: //Display shopping list report
+	case 2:
+
 		for {
 			fmt.Println()
 			fmt.Print(strings.TrimSpace(report))
@@ -97,11 +97,12 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			fmt.Scanln(&reportInput)
 
 			switch reportInput {
-			case 1: //Display total cost of each category
+			case 1:
+
 				fmt.Println()
 				fmt.Println(strings.TrimSpace(eachCatCost))
 
-			case 2: // Display list of item by category
+			case 2:
 				fmt.Println()
 				for item, info := range itemsName {
 					fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
@@ -113,23 +114,26 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			}
 		}
 
-	case 3: // Add items to list
+	case 3:
+
 		var newItemNameInput string
 		var newCategoryNameInput string
 		var newUnitInput int
 		var newCostInput float64
 		var tempCategoryNameInput int
 		fmt.Println("What is the name of your item?")
+
 		fmt.Scanln(&newItemNameInput)
 		fmt.Println("What category does it belong to?")
 		fmt.Scanln(&newCategoryNameInput)
 
 		fmt.Println("How many units are there?")
 		fmt.Scanln(&newUnitInput)
+
 		fmt.Println("How much does it cost per unit")
 		fmt.Scanln(&newCostInput)
 
-		//Find Index of Category Value entered by user (String -> Int value). Int value is required as struct category information in int
+		//Find Index of Category Value entered by user (String -> Int value). Int value is required a struct category information in int
 		for i, v := range category {
 			if v == newCategoryNameInput {
 				tempCategoryNameInput = i
@@ -143,7 +147,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("New item added in the list")
 		fmt.Println(itemsName)
 
-	case 4: //Modify items in the list
+	case 4:
 
 		var modifyItem, modifyName, modifyCategory string
 		var modifyQuantity, tempModifyCategory int
@@ -152,20 +156,28 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Modify Items.")
 		fmt.Println("Which item would you wish to modify?")
 		fmt.Scanln(&modifyItem)
+
 		var info itemInfo = itemsName[modifyItem]
 		fmt.Printf("Current item is %s - Category is %s  - Quantity is %d - Unit Cost %0.f\n", modifyItem, category[info.itemCategory], info.quantity, info.unitCost)
 
 		fmt.Println("Enter new name.Enter for no change.")
-		fmt.Scanln(&modifyName)
+		if _, err := fmt.Scanln(&modifyName); err != nil {
+			defer fmt.Println("No changes to item name made")
+		}
 
 		fmt.Println("Enter new Category.Enter for no change.")
-		fmt.Scanln(&modifyCategory)
-
+		if _, err := fmt.Scanln(&modifyCategory); err != nil {
+			defer fmt.Println("No changes to category name made")
+		}
 		fmt.Println("Enter new Quantity.Enter for no change.")
-		fmt.Scanln(&modifyQuantity)
+		if _, err := fmt.Scanln(&modifyQuantity); err != nil {
+			defer fmt.Println("No changes to quantity name made")
+		}
 
 		fmt.Println("Enter new Unit cost.Enter for no change.")
-		fmt.Scanln(&modifyUnitCost)
+		if _, err := fmt.Scanln(&modifyUnitCost); err != nil {
+			fmt.Println("No changes to unit cost name made")
+		}
 
 		for i, v := range category {
 			if v == modifyCategory {
