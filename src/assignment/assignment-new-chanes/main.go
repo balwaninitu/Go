@@ -14,6 +14,8 @@ const (
 3. Add Items.
 4. Modify Items.
 5. Delete Items.
+6. Print Data
+7. Add/Modify Category
 Select your choice : `
 
 	report = `  
@@ -36,8 +38,6 @@ type itemInfo struct {
 	unitCost     float64
 }
 
-type itemCostSlice []itemInfo
-
 func main() {
 
 	item1 := itemInfo{itemCategory: 0, quantity: 5, unitCost: 3}
@@ -47,17 +47,6 @@ func main() {
 	item5 := itemInfo{itemCategory: 1, quantity: 2, unitCost: 2}
 	item6 := itemInfo{itemCategory: 2, quantity: 5, unitCost: 2}
 	item7 := itemInfo{itemCategory: 2, quantity: 5, unitCost: 2}
-
-	eachCost := itemCostSlice{
-
-		itemInfo{0, 5, 3},
-		itemInfo{0, 4, 3},
-		itemInfo{0, 4, 3},
-		itemInfo{1, 3, 1},
-		itemInfo{1, 2, 2},
-		itemInfo{2, 5, 2},
-		itemInfo{2, 5, 2},
-	}
 
 	category := []string{"Household", "Food", "Drink"}
 
@@ -74,7 +63,7 @@ func main() {
 	// List menu in infinite loop
 	for {
 		userShoppingListMenuInput := displayShoppingListMenu()
-		userChoiceAction(userShoppingListMenuInput, itemsName, category, eachCost)
+		userChoiceAction(userShoppingListMenuInput, itemsName, category)
 	}
 
 }
@@ -92,13 +81,12 @@ func displayShoppingListMenu() int {
 }
 
 // displya to user based on choice selected
-func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemInfo, category []string, eachCost itemCostSlice) {
+func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemInfo, category []string) {
 	switch userShoppingListMenuInput {
 	case 1: // Disply Entire shopping List
 		var item string
 		var info itemInfo
 		fmt.Println("\nShopping List Contents:")
-
 		for item, info = range itemsName {
 			fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
 		}
@@ -115,24 +103,8 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 				fmt.Println()
 				fmt.Println(strings.TrimSpace(eachCatCost))
 
-				fmt.Println(eachCost)
-				m := make(map[int]int)
-				var eachCosts itemInfo
-				for _, eachCosts = range eachCost {
-
-					m[eachCosts.itemCategory] += (eachCosts.quantity * int(eachCosts.unitCost))
-
-				}
-
-				fmt.Print(m)
-				fmt.Println(category)
-
-				for key, element := range m {
-					fmt.Println("Category:", category[key], "=>", "Element:", element)
-				}
-
 			case 2: // Display list of item by category
-				fmt.Println("\nList By category.")
+				fmt.Println()
 				for item, info := range itemsName {
 					fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
 
@@ -144,34 +116,34 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		}
 
 	case 3: // Add items to list
-		var itemNameInput string
-		var categoryNameInput string
-		var unitInput int
-		var costInput float64
+		var newItemNameInput string
+		var newCategoryNameInput string
+		var newUnitInput int
+		var newCostInput float64
 		var tempCategoryNameInput int
 		fmt.Println("What is the name of your item?")
-		fmt.Scanln(&itemNameInput)
+		fmt.Scanln(&newItemNameInput)
 		fmt.Println("What category does it belong to?")
-		fmt.Scanln(&categoryNameInput)
+		fmt.Scanln(&newCategoryNameInput)
 
 		fmt.Println("How many units are there?")
-		fmt.Scanln(&unitInput)
+		fmt.Scanln(&newUnitInput)
 		fmt.Println("How much does it cost per unit")
-		fmt.Scanln(&costInput)
+		fmt.Scanln(&newCostInput)
 
 		//Find Index of Category Value entered by user (String -> Int value). Int value is required as struct category information in int
 		for i, v := range category {
-			if v == categoryNameInput {
+			if v == newCategoryNameInput {
 				tempCategoryNameInput = i
 			}
 		}
 
-		tempItem := itemInfo{itemCategory: tempCategoryNameInput, quantity: unitInput, unitCost: costInput}
+		tempItem := itemInfo{itemCategory: tempCategoryNameInput, quantity: newUnitInput, unitCost: newCostInput}
 
-		itemsName[itemNameInput] = tempItem
+		itemsName[newItemNameInput] = tempItem
 
-		//fmt.Println("New item added in the list")
-		//fmt.Println(itemsName)
+		fmt.Println("New item added in the list")
+		fmt.Println(itemsName)
 
 	case 4: //Modify items in the list
 
@@ -232,6 +204,10 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			}
 		}
 		fmt.Println("Item not found. Nothing to delete!")
+
+	case 6:
+
+		// Print current data
 
 	}
 }

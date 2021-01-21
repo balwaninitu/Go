@@ -6,6 +6,7 @@ type itemInfo struct {
 	itemCategory int
 	quantity     int
 	unitCost     float64
+}
 
 func main() {
 
@@ -19,6 +20,8 @@ func main() {
 
 	category := []string{"Household", "Food", "Drink"}
 
+	fmt.Println(category)
+
 	itemsName := map[string]itemInfo{
 
 		"Cups":   item1,
@@ -28,7 +31,6 @@ func main() {
 		"Bread":  item5,
 		"Coke":   item6,
 		"Sprite": item7,
-
 	}
 
 	// Print Current Data Files :

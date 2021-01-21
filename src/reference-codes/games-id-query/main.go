@@ -34,7 +34,7 @@ func main() {
 	for _, g := range games {
 		byID[g.id] = g
 
-		fmt.Println(g)
+		fmt.Println("g", g)
 	}
 
 	fmt.Printf("Inanc's game store has %d games.\n", len(games))

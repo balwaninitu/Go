@@ -7,19 +7,19 @@ import (
 
 func main() {
 
-	today := time.Now().Weekday()
+	switch time.Now().Weekday() {
 
-	var weekday int
+	case time.Monday, time.Wednesday, time.Friday, time.Sunday:
 
-	switch today {
+		fmt.Println("Today is Odd")
 
-	case weekday == 0:
+	case time.Tuesday, time.Thursday, time.Saturday:
 
-		fmt.Println("Day is even")
+		fmt.Println("Today is even")
 
 	default:
 
-		fmt.Println("Day is odd")
+		fmt.Println("Today is a weekday")
 
 	}
 

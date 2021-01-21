@@ -26,7 +26,7 @@ func main() {
 		} else if num%2 == 0 && num < 10 {
 
 			res1 = ("Even number")
-			res2 = ("less than one digit")1
+			res2 = ("less than one digit")
 
 		} else if num%2 != 0 && num >= 10 {
 
