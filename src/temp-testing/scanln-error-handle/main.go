@@ -36,7 +36,7 @@ Generate Report
 1. Total Cost of each category.
 2. List of item by category.
 3. Main Menu.
-Choose your (pick desired number):`
+Choose your choice (pick desired number):`
 )
 
 type itemInfo struct {
