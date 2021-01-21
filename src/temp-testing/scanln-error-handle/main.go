@@ -273,42 +273,34 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Enter item name to delete:")
 		fmt.Scanln(&deleteItemName)
 
-		for item := range itemsName {
-			switch strings.Title(deleteItemName) == item {
-			case true:
-				delete(itemsName, strings.Title(deleteItemName))
-				fmt.Printf("Deleted %s\n", deleteItemName)
-				fmt.Println(itemsName)
-				return
-			}
+		var found bool
+		_, found = itemsName[strings.Title(deleteItemName)]
+
+		if found == true {
+
+			fmt.Printf("Deleted %s\n", deleteItemName)
+
+		} else {
+
+			fmt.Println("Item not found. Nothing to delete!")
 		}
-		fmt.Println("Item not found. Nothing to delete!")
 
 	case 6:
-
 		var printData string
 		fmt.Println("Print current data")
 		fmt.Println("Which item data you wish to see?")
 		fmt.Scanln(&printData)
 
-		var infoprint itemInfo = itemsName[printData]
-		fmt.Printf("%s - {%d %d %0.f}\n", printData, infoprint.itemCategory, infoprint.quantity, infoprint.unitCost)
+		var found bool
+		_, found = itemsName[strings.Title(printData)]
+		if found == true {
+			var infoprint itemInfo = itemsName[printData]
+			fmt.Printf("%s - {%d %d %0.f}\n", printData, infoprint.itemCategory, infoprint.quantity, infoprint.unitCost)
 
-		for item := range itemsName {
-
-			switch strings.Title(printData) == item {
-
-			case true:
-
-				var infoprint itemInfo = itemsName[strings.Title(printData)]
-				fmt.Printf("%s - {%d %d %0.f}\n", strings.Title(printData), infoprint.itemCategory, infoprint.quantity, infoprint.unitCost)
-				return
-			}
+		} else {
+			fmt.Println("Print current data")
+			fmt.Println("No data found!")
 		}
-
-		fmt.Println("Print current data")
-		fmt.Println("No data found!")
-
 	case 7:
 		var newCatName string
 		fmt.Println("Add New Category Name")

@@ -224,14 +224,16 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Enter item name to delete:")
 		fmt.Scanln((&deleteItemName))
 
-		for item := range itemsName {
-			switch deleteItemName == item {
-			case true:
-				fmt.Printf("Deleted %s\n", deleteItemName)
-				return
-			}
-		}
-		fmt.Println("Item not found. Nothing to delete!")
+		var found bool
+		_, found = itemsName[strings.Title(deleteItemName)]
 
+		if found == true {
+
+			fmt.Printf("Deleted %s\n", deleteItemName)
+
+		} else {
+
+			fmt.Println("Item not found. Nothing to delete!")
+		}
 	}
 }
