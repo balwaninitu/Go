@@ -252,9 +252,8 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			}
 			//loop over slice of category to get index
 			for i, v := range category {
-				if v == modifyCategory {
+				if v == strings.Title(modifyCategory) {
 					tempModifyCategory = i
-					return
 				}
 			}
 
