@@ -150,28 +150,20 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 				m := make(map[int]int)
 				var eachCosts itemInfo
 				for _, eachCosts = range eachCost {
-
 					m[eachCosts.itemCategory] += (eachCosts.quantity * int(eachCosts.unitCost))
-
 				}
-
 				for key, element := range m {
 					fmt.Printf("%s cost : %d\n", category[key], element)
 				}
-
 			case 2: // Display list of item by category
 				fmt.Println()
 				fmt.Println("List by Category")
 				for item, info := range itemsName {
 					fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[info.itemCategory], item, info.quantity, info.unitCost)
-
 				}
-
 				fmt.Println()
 			case 3:
-
 				return
-
 			}
 		}
 
@@ -201,7 +193,6 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 				tempCategoryNameInput = i
 			}
 		}
-
 		if tempCategoryNameInput >= 0 {
 			tempItem := itemInfo{itemCategory: tempCategoryNameInput, quantity: newUnitInput, unitCost: newCostInput}
 			itemsName[strings.Title(newItemNameInput)] = tempItem
@@ -221,13 +212,15 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Which item would you wish to modify?")
 		fmt.Scanln(&modifyItem)
 
+		titleCasemodifyItem := strings.Title(modifyItem)
+
 		var info itemInfo
 		var found bool
-		info, found = itemsName[strings.Title(modifyItem)]
+		info, found = itemsName[titleCasemodifyItem]
 
 		if found == true {
 
-			fmt.Printf("Current item is %s - Category is %s  - Quantity is %d - Unit Cost %0.f\n", modifyItem, category[info.itemCategory], info.quantity, info.unitCost)
+			fmt.Printf("Current item is %s - Category is %s  - Quantity is %d - Unit Cost %0.f\n", titleCasemodifyItem, category[info.itemCategory], info.quantity, info.unitCost)
 
 			fmt.Println("Enter new name.Enter for no change.")
 			if _, err := fmt.Scanln(&modifyName); err != nil {
@@ -256,11 +249,11 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			}
 
 			//add new key to map
-			itemsName[strings.Title(modifyName)] = itemInfo{itemCategory: tempModifyCategory, quantity: modifyQuantity, unitCost: modifyUnitCost}
+			itemsName[(modifyName)] = itemInfo{itemCategory: tempModifyCategory, quantity: modifyQuantity, unitCost: modifyUnitCost}
 			var infoAfterUpdate itemInfo = itemsName[modifyName]
-
+			fmt.Println()
 			fmt.Printf("Category: %s - Item: %s  Quantity : %d Unit Cost: %.0f\n", category[infoAfterUpdate.itemCategory], modifyName, infoAfterUpdate.quantity, infoAfterUpdate.unitCost)
-			delete(itemsName, strings.Title(modifyItem))
+			delete(itemsName, (titleCasemodifyItem))
 			fmt.Println(itemsName)
 
 		} else {
@@ -272,16 +265,14 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Delete Item.")
 		fmt.Println("Enter item name to delete:")
 		fmt.Scanln(&deleteItemName)
+		titleCasedeleteItemName := strings.Title(deleteItemName)
 
 		var found bool
-		_, found = itemsName[strings.Title(deleteItemName)]
-
+		_, found = itemsName[titleCasedeleteItemName]
 		if found == true {
-
-			fmt.Printf("Deleted %s\n", deleteItemName)
-
+			delete(itemsName, titleCasedeleteItemName)
+			fmt.Printf("Deleted %s\n", titleCasedeleteItemName)
 		} else {
-
 			fmt.Println("Item not found. Nothing to delete!")
 		}
 
@@ -290,12 +281,13 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("Print current data")
 		fmt.Println("Which item data you wish to see?")
 		fmt.Scanln(&printData)
+		titleCaseprintData := strings.Title(printData)
 
 		var found bool
-		_, found = itemsName[strings.Title(printData)]
+		_, found = itemsName[titleCaseprintData]
 		if found == true {
-			var infoprint itemInfo = itemsName[printData]
-			fmt.Printf("%s - {%d %d %0.f}\n", printData, infoprint.itemCategory, infoprint.quantity, infoprint.unitCost)
+			var infoprint itemInfo = itemsName[titleCaseprintData]
+			fmt.Printf("%s - {%d %d %0.f}\n", titleCaseprintData, infoprint.itemCategory, infoprint.quantity, infoprint.unitCost)
 
 		} else {
 			fmt.Println("Print current data")
@@ -305,9 +297,11 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		var newCatName string
 		fmt.Println("Add New Category Name")
 		fmt.Println("What is the New Category Name to add?")
-		fmt.Scanln(&newCatName)
+		if _, err := fmt.Scanln(&newCatName); err != nil {
+
+			fmt.Println("No Input Found!")
+		}
 		category = appendIfMissing(category, strings.Title(newCatName))
-		fmt.Println(category)
 
 	}
 
