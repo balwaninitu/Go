@@ -73,11 +73,11 @@ func main() {
 	itemsName := map[string]itemInfo{
 
 		"Cups":   item1,
-		"Coke":   item6,
+		"Fork":   item2,
 		"Plates": item3,
 		"Cake":   item4,
-		"Fork":   item2,
 		"Bread":  item5,
+		"Coke":   item6,
 		"Sprite": item7,
 	}
 	// List menu in infinite loop
@@ -93,6 +93,18 @@ func main() {
 	}
 }
 
+// function to display List menu to user
+func displayShoppingListMenu() int {
+	fmt.Println()
+	fmt.Println(title)
+	fmt.Println(strings.Repeat("=", 25))
+	fmt.Print(strings.TrimSpace(shoppingListMenu))
+	var userShoppingListMenuInput int
+	fmt.Scanln(&userShoppingListMenuInput)
+	return userShoppingListMenuInput
+}
+
+// Function to add new categories to slice
 func appendIfMissing(category []string, newCatName string) []string {
 
 	for i, ele := range category {
@@ -107,17 +119,6 @@ func appendIfMissing(category []string, newCatName string) []string {
 	fmt.Println("Add New Category Name")
 	fmt.Printf("New Category : %s added at index %d", newCatName, findIndex)
 	return category
-}
-
-// function to display List menu to user
-func displayShoppingListMenu() int {
-	fmt.Println()
-	fmt.Println(title)
-	fmt.Println(strings.Repeat("=", 25))
-	fmt.Print(strings.TrimSpace(shoppingListMenu))
-	var userShoppingListMenuInput int
-	fmt.Scanln(&userShoppingListMenuInput)
-	return userShoppingListMenuInput
 }
 
 // switch case to display to user based on choice selected
@@ -144,7 +145,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			case 1:
 
 				/*Display total cost of each category: Created slice of struct to group as per itemcategory
-				ans then range over it to get total cost by category. */
+				and then range over it to get total cost by category. */
 
 				fmt.Println()
 				m := make(map[int]int)
@@ -186,7 +187,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		fmt.Println("How much does it cost per unit")
 		fmt.Scanln(&newCostInput)
 
-		//Find Index of Category Value entered by user (String -> Int value). Int value is required a struct category information in int
+		//Find Index of Category Value entered by user (String -> Int value). Int value is required as struct category information is in int
 		tempCategoryNameInput = -1
 		for i, v := range category {
 			if strings.Title(v) == strings.Title(newCategoryNameInput) {
@@ -199,7 +200,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			fmt.Println("New item added in the list")
 			fmt.Println(itemsName)
 		} else {
-			fmt.Printf("Category %s does not exist. Pleae add from given category %s!", newCategoryNameInput, category)
+			fmt.Printf("Category %s does not exist. Pleae add from given category %s!\n", newCategoryNameInput, category)
 		}
 
 	case 4: //Modify items in the list
@@ -276,7 +277,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			fmt.Println("Item not found. Nothing to delete!")
 		}
 
-	case 6:
+	case 6: // Print current Data Fields
 		var printData string
 		fmt.Println("Print current data")
 		fmt.Println("Which item data you wish to see?")
@@ -293,7 +294,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 			fmt.Println("Print current data")
 			fmt.Println("No data found!")
 		}
-	case 7:
+	case 7: // Add new category name
 		var newCatName string
 		fmt.Println("Add New Category Name")
 		fmt.Println("What is the New Category Name to add?")
