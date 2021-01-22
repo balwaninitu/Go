@@ -205,7 +205,7 @@ func userChoiceAction(userShoppingListMenuInput int, itemsName map[string]itemIn
 		if tempCategoryNameInput >= 0 { //checking condition if user input given categories exist or not.
 			tempItem := itemInfo{itemCategory: tempCategoryNameInput, quantity: newUnitInput, unitCost: newCostInput}
 			itemsName[strings.Title(newItemNameInput)] = tempItem
-			fmt.Println("New item added in the list")
+			fmt.Println("Item added in the list")
 			fmt.Println(itemsName)
 		} else {
 			fmt.Printf("Category %s does not exist. Pleae add from given category %s!\n", newCategoryNameInput, category)
