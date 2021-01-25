@@ -6,8 +6,9 @@ func main() {
 
 	harrypotter.print()
 
-	ludos := game{title: "Ludo", price: 34.05}
+	ludos := game{title: "ludo", price: 20}
 
 	ludos.print()
+	ludos.discount(0.5)
 
 }

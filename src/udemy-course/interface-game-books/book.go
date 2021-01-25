@@ -4,15 +4,15 @@ import "fmt"
 
 type book struct {
 	title string
-	price float64
+	price money
 }
 
 func (b book) print() {
 
-	fmt.Printf("%s %.2f\n", b.title, b.price)
+	fmt.Printf("%s %s\n", b.title, b.price.string())
 }
 
 func (b book) discount(ratio float64) {
 
-	b.price *= (1 - ratio)
+	b.price *= money(1 - ratio)
 }

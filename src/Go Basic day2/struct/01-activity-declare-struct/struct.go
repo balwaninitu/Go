@@ -31,4 +31,18 @@ func main() {
 
 	fmt.Println(customer1)
 
+	customer2 := customer{
+
+		fname:            "Annakin",
+		lname:            "Skywalker",
+		age:              45,
+		subscriber:       true,
+		homeAdd:          "death star",
+		phone:            123456,
+		creditAvailable:  10000.0,
+		currentCartCost:  34.8,
+		currentOrderCost: 23.80,
+	}
+
+	fmt.Println(customer2)
 }

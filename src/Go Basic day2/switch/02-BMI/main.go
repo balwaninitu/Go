@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
@@ -15,39 +14,33 @@ func main() {
 	fmt.Println("Enter weight in kg")
 	fmt.Scanln(&inputWeight)
 
-	resultBMI := inputWeight / math.Sqrt(inputHeight)
-
-	var res string
-
-	switch {
+	switch resultBMI := inputWeight / (inputHeight * inputHeight); {
 
 	case resultBMI < 18.5:
 
-		res = "Underweight"
+		fmt.Println("Underweight")
 
-	case resultBMI >= 18.5 || resultBMI <= 24.9:
+	case resultBMI >= 18.5 || resultBMI < 24.9:
 
-		res = "Healthy Weight"
+		fmt.Println("Healthy Weight")
 
-	case resultBMI >= 25 || resultBMI <= 29.9:
+	case resultBMI >= 25 || resultBMI < 29.9:
 
-		res = "Overweight"
+		fmt.Println("Overweight")
 
-	case resultBMI >= 30 || resultBMI <= 34.9:
+	case resultBMI >= 30 || resultBMI < 34.9:
 
-		res = "Obese"
+		fmt.Println("Obese")
 
-	case resultBMI >= 35 || resultBMI <= 39.9:
-		res = "Severely Obese"
+	case resultBMI >= 35 || resultBMI < 39.9:
+		fmt.Println("Severely Obese")
 	case resultBMI >= 40:
 		{
 
-			res = "Morbidly Obese"
+			fmt.Println("Morbidly Obese")
 
 		}
 
 	}
-
-	fmt.Printf("Your BMI is %.2f & you are %s", resultBMI, res)
 
 }
