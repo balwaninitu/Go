@@ -69,6 +69,43 @@ func (s *stack) isEmpty() bool {
 	return s.size == 0
 }
 
+func (s *stack) checkBalanceParenthesis(expression string) bool {
+	s = &stack{nil, 0}
+	var x string
+
+	for i := 0; i < len(expression); i++ {
+		if expression[i] == '(' || expression[i] == '[' || expression[i] == '{' {
+			s.push(string(expression[i]))
+			continue
+		}
+		if s.isEmpty() == true {
+			return false
+		}
+
+		switch expression[i] {
+		case ')':
+			x, _ = s.pop()
+			if x == "{" || x == "[" {
+				return false
+			}
+
+		case ']':
+			x, _ := s.pop()
+			if x == "{" || x == "(" {
+				return false
+
+			}
+		case '}':
+			x, _ = s.pop()
+			if x == "(" || x == "{" {
+				return false
+			}
+
+		}
+	}
+	return (s.isEmpty())
+}
+
 func main() {
 
 	myStack := stack{nil, 0}
