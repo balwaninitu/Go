@@ -17,18 +17,16 @@ func main() {
 
 	var i int
 	var v string
+	fmt.Println("The Board games are:")
 	for i, v = range games {
 		i = i + 1
 		fmt.Printf("%d: %s\n", i, v)
 	}
-
 	printing()
 
 }
 
 func printing() {
-
-	fmt.Println("The Board games are:")
 	fmt.Println()
 	fmt.Println("Whats is your favourite game")
 	fmt.Scanln(&n)
