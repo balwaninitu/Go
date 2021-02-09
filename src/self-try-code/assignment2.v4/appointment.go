@@ -7,8 +7,8 @@ import (
 
 type appointment struct {
 	patientName      string
+	doctorName       string
 	dayOfAppointment string
-	doctorID         int
 	next             *appointment
 }
 
@@ -26,12 +26,11 @@ func createAppointment(n string) *doctorList {
 	}
 }
 
-func (d *doctorList) addAppointmentDetails(pn string, dID int, day string) error {
+func (d *doctorList) addAppointmentDetails(pn string, dn string) error {
 	d.lock.Lock()
 	appt := appointment{
-		patientName:      pn,
-		doctorID:         dID,
-		dayOfAppointment: day,
+		patientName: pn,
+		doctorName:  dn,
 	}
 	if d.head == nil {
 		d.head = &appt

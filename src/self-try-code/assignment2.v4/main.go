@@ -12,25 +12,21 @@ type details struct {
 	name         string
 	availableDay string
 }
-type doctor struct {
-	details
-	specialisation string
-}
 
 func main() {
-	doctors := []doctor{
-		{details: details{id: 1, name: "dr1", availableDay: "Mon"}, specialisation: "Periodontist"},
-		{details: details{id: 2, name: "dr2", availableDay: "Tue"}, specialisation: "Endodontist"},
-		{details: details{id: 3, name: "dr3", availableDay: "Wed"}, specialisation: "Orthodontist"},
-		{details: details{id: 4, name: "dr4", availableDay: "Thu"}, specialisation: "General Dentist"},
-		{details: details{id: 5, name: "dr5", availableDay: "Thu"}, specialisation: "Prosthodontist"},
+	doctors := []details{
+		details{id: 1, name: "dr1", availableDay: "Mon"},
+		details{id: 2, name: "dr2", availableDay: "Tue"},
+		details{id: 3, name: "dr3", availableDay: "Wed"},
+		details{id: 4, name: "dr4", availableDay: "Thu"},
+		details{id: 5, name: "dr5", availableDay: "Thu"},
 	}
 
 	//fmt.Println(doctors)
 
 	//index the doctor by id
 
-	byID := make(map[int]doctor)
+	byID := make(map[int]details)
 
 	for _, d := range doctors {
 		byID[d.id] = d
@@ -61,15 +57,12 @@ func main() {
 
 		case "book":
 			myAppointment := createAppointment("myAppointment")
-
-			myAppointment.startBooking()
 			var name string
-			var drID int
-			fmt.Println("enter name")
+			fmt.Println("enter patient name")
 			fmt.Scanln(&name)
-			fmt.Printf("Hi %s Available doctors are\n", myAppointment.name)
+			fmt.Printf("Hi %s Available doctors are\n", name)
 			for _, d := range doctors {
-				fmt.Printf("Id :%d  Name: %s Specialisation: %s\n", d.id, d.name, d.specialisation)
+				fmt.Printf("Id :%d  Name: %s on %s\n", d.id, d.name, d.availableDay)
 			}
 			fmt.Println("enter docter id")
 			fmt.Scanln(&drID)
