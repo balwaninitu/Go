@@ -59,7 +59,7 @@ func main() {
 		}
 
 		switch cmd[0] {
-		case "quit":
+		case "exit":
 			fmt.Println("bye bye!")
 			return
 
@@ -79,15 +79,22 @@ func main() {
 				continue
 			}
 
-			d, ok := byID[id]
-			if !ok {
-				fmt.Println("Sorry, We dont have the Doctor with this ID")
-				continue
-			} else {
-				fmt.Printf("%d. Name: %-10q  Available: %-10q  Specialisation: %-10q\n", d.id, d.name, d.availableDay, d.specialisation)
-			}
+			// d, ok := byID[id]
+			// if !ok {
+			// 	fmt.Println("Sorry, We dont have the Doctor with this ID")
+			// 	continue
+			// } else {
+			// 	fmt.Printf("%d. Name: %-10q  Available: %-10q  Specialisation: %-10q\n", d.id, d.name, d.availableDay, d.specialisation)
+			// }
 			searchDrSlice := appendSlice(doctors)
 			search(searchDrSlice, len(searchDrSlice), id)
+			//fmt.Printf("%d. Name: %-10q  Available: %-10q  Specialisation: %-10q\n", d.id, d.name, d.availableDay, d.specialisation)
+
+		case "delete":
+			//only admin can delete appointment based on dequeue algorithm FIFO
+			fmt.Println("sorry you dont have access to this feature")
+
+			// lock this section by password
 
 		case "book":
 			var patientName, aptDay string
@@ -99,7 +106,7 @@ func main() {
 			for _, d := range doctors {
 				fmt.Printf("%d. Name: %s Specialisation: %s\n", d.id, d.name, d.specialisation)
 			}
-			fmt.Println("Enter doctor Id")
+			fmt.Println("Enter doctor Id (eg. 1)")
 			fmt.Scanln(&doctorID)
 			d, ok := byID[doctorID]
 			if !ok {
@@ -110,7 +117,7 @@ func main() {
 			}
 
 			fmt.Printf("%s is available on: %s\n", d.name, d.availableDay)
-			fmt.Println("Pleae proceed by entering given day")
+			fmt.Println("Please proceed by entering given day")
 			fmt.Scanln(&aptDay)
 
 			myAppointment := createAppointment("myAppointment")
@@ -119,12 +126,6 @@ func main() {
 			myAppointment.addAppointmentDetails(patientName, doctorID, aptDay)
 			fmt.Printf("Thank you %s!\nYour Appointment has been added", patientName)
 			fmt.Println(myAppointment.showAllAppointment())
-
-		case "delete":
-			//only admin can delete appointment based on dequeue algorithm FIFO
-			fmt.Println("sorry you dont have access to this feature")
-
-			// lock this section by password
 
 		}
 

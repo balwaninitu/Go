@@ -13,16 +13,13 @@ type details struct {
 	name         string
 	availableDay string
 }
-
 type doctor struct {
 	details
 	specialisation string
 }
 
 func main() {
-
 	doctors := []doctor{
-
 		{details: details{id: 1, name: "dr1", availableDay: "Mon"}, specialisation: "Periodontist"},
 		{details: details{id: 2, name: "dr1", availableDay: "Tue"}, specialisation: "Endodontist"},
 		{details: details{id: 3, name: "dr1", availableDay: "Wed"}, specialisation: "Orthodontist"},

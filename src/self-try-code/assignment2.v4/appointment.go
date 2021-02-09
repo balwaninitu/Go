@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type appointment struct {
 	patientName      string
@@ -11,9 +14,10 @@ type appointment struct {
 
 type doctorList struct {
 	head *appointment
-	back *appointment
+	now  *appointment
 	name string
 	size int
+	lock sync.RWMutex
 }
 
 func createAppointment(n string) *doctorList {
@@ -23,22 +27,36 @@ func createAppointment(n string) *doctorList {
 }
 
 func (d *doctorList) addAppointmentDetails(pn string, dID int, day string) error {
-	appt := &appointment{
+	d.lock.Lock()
+	appt := appointment{
 		patientName:      pn,
 		doctorID:         dID,
 		dayOfAppointment: day,
 	}
 	if d.head == nil {
-		d.head = appt
+		d.head = &appt
 	} else {
 		currentNode := d.head
 		for currentNode.next != nil {
 			currentNode = currentNode.next
 		}
-		currentNode.next = appt
+		currentNode.next = &appt
 	}
 	d.size++
+	d.lock.Unlock()
 	return nil
+}
+
+func (d *doctorList) Head() *appointment {
+	d.lock.RLock()
+	defer d.lock.RUnlock()
+	return d.head
+}
+
+func (d *doctorList) show() *appointment {
+	d.lock.RLock()
+	defer d.lock.RUnlock()
+	return d.head
 }
 
 func (d *doctorList) showAllAppointment() error {
@@ -56,4 +74,14 @@ func (d *doctorList) showAllAppointment() error {
 	}
 	fmt.Println("-------------")
 	return nil
+}
+
+func (d *doctorList) startBooking() *appointment {
+	d.now = d.head
+	return d.now
+}
+
+func (d *doctorList) nextApt() *appointment {
+	d.now = d.now.next
+	return d.now
 }

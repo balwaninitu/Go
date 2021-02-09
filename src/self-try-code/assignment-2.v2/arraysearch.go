@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func appendSlice(doctors []doctor) []int {
 	var s []int
@@ -13,14 +16,14 @@ func appendSlice(doctors []doctor) []int {
 }
 
 func search(s []int, n int, target int) error {
-	var i int
-	for i = range s {
+
+	for i := range s {
 		if i == target {
 			i = i + 1
-			fmt.Println("id found")
-
+			fmt.Printf("docotr ID %d found", i)
+			return nil
 		}
 	}
-	return nil
+	return errors.New("docotr not found")
 
 }
