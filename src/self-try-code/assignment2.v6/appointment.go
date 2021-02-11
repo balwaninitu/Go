@@ -6,11 +6,10 @@ import (
 )
 
 type appointmentDetails struct {
-	patientName string
-	doctorName  string
-	doctorID    int
-	aptTime     time.Time
-	next        *appointmentDetails
+	appointmentID int
+	patientName   string
+	doctor        doctorDetails
+	next          *appointmentDetails
 }
 
 type appointmentList struct {
@@ -25,12 +24,16 @@ func createAppointmentList(name string) *appointmentList {
 	}
 }
 
-func (a *appointmentList) addAppointmentDetails(pn string, dn string, dID int, aptTime time.Location) error {
+func (a *appointmentList) addAppointmentDetails(*appointmentDetails) error {
 	apt := &appointmentDetails{
-		patientName: pn,
-		doctorName:  dn,
-		doctorID:    dID,
-		aptTime:     time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local),
+		appointmentID: 1,
+		patientName:   "Pt1",
+		doctorDetails{
+			id:            1,
+			name:          "dr1",
+			availableTime: time.Time,
+			availability:  true,
+		},
 	}
 	if a.head == nil {
 		a.head = apt
@@ -51,7 +54,7 @@ func (a *appointmentList) showAllDetails() error {
 		return nil
 	}
 
-	fmt.Printf("%s, your appointmnet with %s on %v has created\n", *&currentNode.patientName, *&currentNode.doctorName, *&currentNode.aptTime)
+	fmt.Printf("%s, your appointmnet with %s has created\n", currentNode.patientName, currentNode.doctorName)
 	for currentNode.next != nil {
 		currentNode = currentNode.next
 		fmt.Printf("%+v\n", currentNode)

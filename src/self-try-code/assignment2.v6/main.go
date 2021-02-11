@@ -12,27 +12,28 @@ type doctorDetails struct {
 	id            int
 	name          string
 	availableTime time.Time
+	availability  bool
 }
 
 func main() {
 
+	t1, _ := time.Parse(time.RFC822, "17 FEB 21 10:00 SGT")
+	t2, _ := time.Parse(time.RFC822, "18 FEB 21 12:00 SGT")
+	t3, _ := time.Parse(time.RFC822, "17 FEB 21 14:00 SGT")
+	t4, _ := time.Parse(time.RFC822, "18 FEB 21 16:00 SGT")
+	t5, _ := time.Parse(time.RFC822, "19 FEB 21 18:00 SGT")
+
 	doctors := []doctorDetails{
-		{id: 1, name: "dr1", availableTime: time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local)},
-		{id: 2, name: "dr2", availableTime: time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local)},
-		{id: 3, name: "dr3", availableTime: time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local)},
-		{id: 4, name: "dr4", availableTime: time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local)},
-		{id: 5, name: "dr5", availableTime: time.Date(2021, time.February, time.Now().Day(), time.Now().Hour(), 0, 0, 0, time.Local)},
+		{id: 1, name: "dr1", availableTime: t1, availability: true},
+		{id: 2, name: "dr2", availableTime: t2, availability: true},
+		{id: 3, name: "dr3", availableTime: t3, availability: true},
+		{id: 4, name: "dr4", availableTime: t4, availability: true},
+		{id: 5, name: "dr5", availableTime: t5, availability: true},
 	}
 
 	//fmt.Println(doctors)
 
 	//index the doctor by id
-
-	byID := make(map[int]doctorDetails)
-
-	for _, d := range doctors {
-		byID[d.id] = d
-	}
 
 	in := bufio.NewScanner(os.Stdin)
 
@@ -60,7 +61,7 @@ func main() {
 
 		case "list":
 			for _, d := range doctors {
-				fmt.Printf("%d. %-10q  Available: %-10q\n", d.id, d.name, d.availableTime)
+				fmt.Printf("%d. %-10q  Available On: %-10q Availability:%t\n", d.id, d.name, d.availableTime.Format(time.ANSIC), d.availability)
 			}
 
 		case "search":
@@ -73,27 +74,33 @@ func main() {
 
 			myAppointment := createAppointmentList("myAppointment")
 			var patientName string
-			var doctorID int
-			var aptTime time.Location
+			var doctorName string
+			//var aptTime time.Location
+			var i int
+			var d doctorDetails
 			//var availableDay string
 			fmt.Println("enter patient name")
 			fmt.Scanln(&patientName)
-			fmt.Println("find below details of doctor and their available day")
-			for _, d := range doctors {
-				fmt.Printf("%d. %-10q  Available: %-10q\n", d.id, d.name, d.availableTime)
+			fmt.Println("find below details of doctor and their availability")
+			for i, d = range doctors {
+				i = i + 1
+				fmt.Printf("%d. %-10q  Available on: %-10q, Available:%t\n", d.id, d.name, d.availableTime.Format(time.ANSIC), d.availability)
 			}
-			fmt.Println("enter doctor id")
-			fmt.Scanln(&doctorID)
-			d, ok := byID[doctorID]
-			if !ok {
-				fmt.Println("Sorry, We dont have the Doctor with this ID")
-
+			fmt.Println("choose doctor name from above list")
+			fmt.Scanln(&doctorName)
+			err := search(doctors, len(doctors), doctorName) //sequential search
+			if err != nil {
+				fmt.Println("Invalid name")
+				continue
 			}
-			fmt.Printf("%d is %s and is available on %v", doctorID, d.name, d.availableTime)
-			myAppointment.addAppointmentDetails(patientName, d.name, doctorID, aptTime)
-			fmt.Println("Appointment created")
+			fmt.Println("press eneter to make appointment")
+			fmt.Scanln()
+			myAppointment.addAppointmentDetails(patientName, doctorName)
+			fmt.Println()
 			myAppointment.showAllDetails()
+			continue
 
 		}
+
 	}
 }
