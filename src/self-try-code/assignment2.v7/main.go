@@ -57,23 +57,6 @@ func (c *ClinicAppointmentList) Append(newAppointment *Appointment) {
 	c.length++
 }
 
-//RemoveAt can be exported
-func (c *ClinicAppointmentList) RemoveAt(i int) (*Appointment, error) {
-	if i < 0 || i > c.length {
-		fmt.Errorf("Index out of bounds")
-	}
-	apt := c.start
-	j := 0
-	for j < i-1 {
-		j++
-		apt = apt.next
-	}
-	remove := apt.next
-	apt.next = remove.next
-	c.length--
-	return &remove.aptID, nil
-}
-
 func main() {
 	t1, _ := time.Parse(time.RFC822, "17 FEB 21 10:00 SGT")
 	t2, _ := time.Parse(time.RFC822, "18 FEB 21 10:00 SGT")
