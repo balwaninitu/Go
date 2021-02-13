@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -40,21 +41,6 @@ type Appointment struct {
 type ClinicAppointmentList struct {
 	start  *Appointment
 	length int
-}
-
-//Append function can be exported
-func (c *ClinicAppointmentList) Append(newAppointment *Appointment) {
-
-	if c.length == 0 {
-		c.start = newAppointment
-	} else {
-		currentAppointment := c.start
-		for currentAppointment.next != nil {
-			currentAppointment = currentAppointment.next
-		}
-		currentAppointment.next = newAppointment
-	}
-	c.length++
 }
 
 func main() {
@@ -208,4 +194,53 @@ func searchDoctorByName(doctorList *[]doctorDetails, doctorName string) {
 		return
 	}
 
+}
+
+//Append function can be exported
+func (c *ClinicAppointmentList) Append(newAppointment *Appointment) {
+
+	if c.length == 0 {
+		c.start = newAppointment
+	} else {
+		currentAppointment := c.start
+		for currentAppointment.next != nil {
+			currentAppointment = currentAppointment.next
+		}
+		currentAppointment.next = newAppointment
+	}
+	c.length++
+}
+
+//Remove func can be exported
+func (c *ClinicAppointmentList) Remove(aptID int) {
+
+	// Appointment list is empty
+	if c.length == 0 {
+		panic(errors.New("Appointment list is empty"))
+	}
+
+	//To delete first appointment - move head pointer
+	currentAppointment := c.start
+	if c.start.aptID == aptID {
+		c.start = currentAppointment.next
+		return
+	}
+
+	//To delete middle appointment - need two pointers (previous and next)
+	previousAppointment := c.start
+	currentAppointment = c.start.next
+	for currentAppointment.next != nil {
+		if currentAppointment.aptID == aptID {
+			previousAppointment.next = currentAppointment.next
+			return
+		}
+		currentAppointment = currentAppointment.next
+		previousAppointment = previousAppointment.next
+	}
+
+	//To delete last appointment need to confirm if node is nil or not
+	if currentAppointment.next == nil && currentAppointment.aptID == aptID {
+		previousAppointment.next = nil
+		return
+	}
 }
