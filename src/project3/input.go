@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -14,14 +14,17 @@ func displayList() int {
 	fmt.Println(strings.Repeat("=", 40))
 	fmt.Print(strings.TrimSpace(listDisplay))
 	var userListInput int
-	fmt.Scanln(&userListInput)
+	_, err := fmt.Scanln(&userListInput)
+	if err != nil {
+		fmt.Println(errors.New("Error:Unexpected new line"))
+	}
 	return userListInput
 }
 
 // Function#2 :- Call appropriate sub-function based on user Input
 func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmentList *ClinicAppointmentList) {
 	ch := make(chan string)
-	go readAdminPassword(ch)
+	go readAdminPassword(ch) //go routine created to receive and transfer password securely through channel for admin only features
 	switch userListInput {
 	case 1:
 		*doctorList = makeAppointment(&(*doctorList), appointmentList)
@@ -29,15 +32,18 @@ func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmen
 		displayAllDoctorAvailableTime(*doctorList)
 	case 3:
 		var doctorName string
-		reader := bufio.NewReader(os.Stdin)
+
 		fmt.Print("Enter Doctor Name: ")
-		doctorName, _ = reader.ReadString('\n')
-		//convert CRLF to LF
-		doctorName = strings.Replace(doctorName, "\n", "", -1)
+		_, err := fmt.Scanln(&doctorName)
+		if err != nil {
+			fmt.Println(errors.New("Error:Unexpected new line"))
+		}
+
 		_ = searchDoctorByName(&(*doctorList), doctorName)
 	case 4:
 		displayAllBookedAppointments(appointmentList)
-
+		//admin features only accessible after entering password which is concurrentltly running through goroutines channel
+		//password will be send by channel
 	case 5:
 		readPassword := <-ch
 		enteredPassword := enterAdminPassword()

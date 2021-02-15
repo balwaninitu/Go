@@ -1,9 +1,8 @@
 package main
 
 import (
-	"bufio"
+	"errors"
 	"fmt"
-	"os"
 	"strings"
 	"time"
 )
@@ -35,19 +34,19 @@ type ClinicAppointmentList struct {
 
 func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppointmentList) []doctorDetails {
 	var patientName, doctorName string
-	reader := bufio.NewReader(os.Stdin)
 	fmt.Println()
 	fmt.Println("******Appointment Booking System******")
-	fmt.Print("Enter Patient Name: ")
-	patientName, _ = reader.ReadString('\n')
+	fmt.Print("Enter Patient Name ")
+	_, err := fmt.Scanln(&patientName)
+	if err != nil {
+		fmt.Println(errors.New("Error:Unexpected new line"))
+	}
 
-	//conver CRLF to LF
-	patientName = strings.Replace(patientName, "\n", "", -1)
-
-	fmt.Print("Enter Doctor Name(eg. DR1): ")
-	doctorName, _ = reader.ReadString('\n')
-	//conver CRLF to LF
-	doctorName = strings.Replace(doctorName, "\n", "", -1)
+	fmt.Print("Enter Doctor Name(eg. DR1) ")
+	_, err = fmt.Scanln(&doctorName)
+	if err != nil {
+		fmt.Println(errors.New("Error:Unexpected new line"))
+	}
 
 	var tempDoctorName = strings.ToUpper(strings.TrimSpace(doctorName))
 	var tempPatientName = strings.ToUpper(strings.TrimSpace(patientName))
@@ -57,8 +56,11 @@ func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppoint
 
 	if available {
 		var slot int
-		fmt.Print("Enter time slot for booking (eg.1 to book Timeslot 1): ")
-		fmt.Scanln(&slot)
+		fmt.Print("Enter time slot(number display beside doctor name) for booking (eg.1 to book Timeslot 1): ")
+		_, err := fmt.Scanln(&slot)
+		if err != nil {
+			fmt.Println(errors.New("Error:Unexpected new line"))
+		}
 		for index, doctorValue := range *doctorList {
 
 			//if strings.ToUpper(strings.TrimSpace(doctorValue.doctorName)) == tempDoctorName && doctorValue.available {

@@ -1,7 +1,10 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
+	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -37,4 +40,47 @@ func displayAllDoctorAvailableTime(doctorList []doctorDetails) {
 			fmt.Printf("%d) %s %s %d\n", index+1, doctorValue.doctorName, doctorValue.DayTime.Format(time.ANSIC), doctorValue.appointmentID)
 		}
 	}
+}
+
+//ReadCsv can be exported
+func ReadCsv(filename string) ([][]string, error) {
+
+	f, err := os.Open(filename)
+	if err != nil {
+		return [][]string{}, err
+	}
+	defer f.Close()
+
+	lines, err := csv.NewReader(f).ReadAll()
+	if err != nil {
+		return [][]string{}, err
+	}
+
+	return lines, nil
+}
+
+// ReadDoctorList can be exported
+func readDoctorList(doctorList *[]doctorDetails) []doctorDetails {
+	var lines, err = ReadCsv("C:/Projects/Go/src/project3/doctor.csv")
+	if err != nil {
+		panic(err)
+	}
+	for _, line := range lines {
+		drID, err := strconv.Atoi(line[0])
+		check(err)
+		doctorName := line[1]
+		DayTime, err := time.Parse(time.RFC822, line[2])
+		check(err)
+		available, err := strconv.ParseBool(line[3])
+		check(err)
+		data := doctorDetails{
+			drID:       drID,
+			doctorName: doctorName,
+			DayTime:    DayTime,
+			available:  available,
+		}
+
+		*doctorList = append(*doctorList, data)
+	}
+	return *doctorList
 }
