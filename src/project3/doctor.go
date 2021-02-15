@@ -34,7 +34,7 @@ func searchDoctorByName(doctorList *[]doctorDetails, doctorName string) bool {
 func displayAllDoctorAvailableTime(doctorList []doctorDetails) {
 	fmt.Println()
 	fmt.Println("***List of available docotrs***")
-	fmt.Println(strings.Repeat("=", 50))
+	fmt.Println(strings.Repeat("=", 40))
 	for index, doctorValue := range doctorList {
 		if doctorValue.available {
 			fmt.Printf("%d) %s %s %d\n", index+1, doctorValue.doctorName, doctorValue.DayTime.Format(time.ANSIC), doctorValue.appointmentID)

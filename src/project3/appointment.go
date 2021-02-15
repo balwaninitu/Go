@@ -51,7 +51,7 @@ func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppoint
 	var tempDoctorName = strings.ToUpper(strings.TrimSpace(doctorName))
 	var tempPatientName = strings.ToUpper(strings.TrimSpace(patientName))
 	fmt.Println()
-	fmt.Printf("Here are available time slots for doctor %s\n", tempDoctorName)
+	fmt.Printf("Available time slots for doctor %s\n", tempDoctorName)
 	available := searchDoctorByName(&(*doctorList), tempDoctorName)
 
 	if available {
@@ -95,6 +95,22 @@ func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppoint
 	return *doctorList
 }
 
+//Append function can be exported
+//linked list method will receive appointments and get append into the list
+func (c *ClinicAppointmentList) Append(newAppointment *Appointment) {
+
+	if c.length == 0 {
+		c.start = newAppointment
+	} else {
+		currentAppointment := c.start
+		for currentAppointment.next != nil {
+			currentAppointment = currentAppointment.next
+		}
+		currentAppointment.next = newAppointment
+	}
+	c.length++
+}
+
 //linked list of booked appointment list will get display by this function, all the current book appointment cab be seen
 func displayAllBookedAppointments(appointmentList *ClinicAppointmentList) {
 	if appointmentList.length == 0 {
@@ -103,7 +119,9 @@ func displayAllBookedAppointments(appointmentList *ClinicAppointmentList) {
 	}
 	index := 1
 	appointmentListValue := appointmentList.start
+	fmt.Println()
 	fmt.Println("List of booked Appointments:")
+	fmt.Println(strings.Repeat("=", 40))
 	for appointmentListValue != nil {
 		fmt.Printf("%d) %s %s %v\n", appointmentListValue.aptID, appointmentListValue.patientName, appointmentListValue.doctor.doctorName, appointmentListValue.doctor.DayTime.Format(time.ANSIC))
 		index = index + 1

@@ -21,7 +21,8 @@ func main() {
 
 	// This is Fist Data Structure (Slice) of the program for storing Doctor details and their available time slot
 	doctorList := []doctorDetails{}
-
+	//doctor details will get read from csv file
+	//function details available in doctor.go file
 	doctorList = readDoctorList(&doctorList)
 	// This is Second Data Structure (Singly Linked List) of the program
 	appointmentList := &ClinicAppointmentList{}
