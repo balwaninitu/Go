@@ -63,7 +63,7 @@ func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppoint
 		}
 		for index, doctorValue := range *doctorList {
 
-			//if strings.ToUpper(strings.TrimSpace(doctorValue.doctorName)) == tempDoctorName && doctorValue.available {
+			//checking availability of slot through boolean value
 			if index+1 == slot && (*doctorList)[index].available {
 				var d1 = doctorDetails{
 					drID:       doctorValue.drID,
@@ -77,7 +77,7 @@ func makeAppointment(doctorList *[]doctorDetails, appointmentList *ClinicAppoint
 					patientName: tempPatientName,
 					doctor:      d1,
 				}
-
+				//once doctor slot get booked, boolean value become false and booked time lot will not be avaialble for further bookings
 				appointmentList.Append(&a1)
 				(*doctorList)[slot-1].available = false
 				fmt.Println()

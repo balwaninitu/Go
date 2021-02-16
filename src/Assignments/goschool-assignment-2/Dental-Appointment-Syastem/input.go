@@ -4,24 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 )
 
-// Function #1 :- Display user choice list and accept user input
-func displayList() int {
-	fmt.Println()
-	fmt.Println(strings.TrimSpace(title))
-	fmt.Println(strings.Repeat("=", 40))
-	fmt.Print(strings.TrimSpace(listDisplay))
-	var userListInput int
-	_, err := fmt.Scanln(&userListInput)
-	if err != nil {
-		fmt.Println(errors.New("Error:No input"))
-	}
-	return userListInput
-}
-
-// Function#2 :- Call appropriate sub-function based on user Input
+//  Call appropriate sub-function based on user Input
 func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmentList *ClinicAppointmentList) {
 	ch := make(chan string)
 	go readAdminPassword(ch) //go routine created to receive and transfer password securely through channel for admin only features
@@ -44,7 +29,7 @@ func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmen
 		displayAllBookedAppointments(appointmentList)
 		//admin features only accessible after entering password which is concurrentltly running through goroutines channel
 		//password will be send by channel
-	case 5:
+	case 5: //reading password from channel and entering to access admin feature
 		readPassword := <-ch
 		enteredPassword := enterAdminPassword()
 		if enteredPassword == readPassword {
@@ -54,7 +39,7 @@ func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmen
 			fmt.Println("Incorrect password")
 		}
 
-	case 6:
+	case 6: //reading password from channel and entering to access admin feature
 		readPassword := <-ch
 		enteredPassword := enterAdminPassword()
 		if enteredPassword == readPassword {
@@ -65,7 +50,7 @@ func userChoiceAction(userListInput int, doctorList *[]doctorDetails, appointmen
 			fmt.Println("Incorrect password")
 		}
 
-	case 7:
+	case 7: //exit from infinite loop
 		fmt.Println("Bye! Bye!")
 		os.Exit(0)
 	}

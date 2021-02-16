@@ -111,7 +111,7 @@ func (c *ClinicAppointmentList) Append(newAppointment *Appointment) {
 	c.length++
 }
 
-//linked list of booked appointment list will get display by this function, all the current book appointment cab be seen
+//linked list of booked appointment list will get display by this function, all the current book appointment can be seen
 func displayAllBookedAppointments(appointmentList *ClinicAppointmentList) {
 	if appointmentList.length == 0 {
 		fmt.Println("Appointment list is Empty")

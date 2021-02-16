@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -43,6 +44,7 @@ func displayAllDoctorAvailableTime(doctorList []doctorDetails) {
 }
 
 //ReadCsv can be exported
+//return docotr details slice
 func ReadCsv(filename string) ([][]string, error) {
 
 	f, err := os.Open(filename)
@@ -61,17 +63,18 @@ func ReadCsv(filename string) ([][]string, error) {
 
 // ReadDoctorList can be exported
 func readDoctorList(doctorList *[]doctorDetails) []doctorDetails {
+	defer recoverFromPanic()
 	var lines, err = ReadCsv("C:/Projects/Go/src/Assignments/goschool-assignment-2/Dental-Appointment-Syastem/doctor.csv")
 	if err != nil {
-		panic(err)
-	}
+		panic(errors.New("Wrong file name or path"))
+	} //data in slice avaialble in string
 	for _, line := range lines {
-		drID, err := strconv.Atoi(line[0])
+		drID, err := strconv.Atoi(line[0]) //convert string to int
 		check(err)
 		doctorName := line[1]
-		DayTime, err := time.Parse(time.RFC822, line[2])
+		DayTime, err := time.Parse(time.RFC822, line[2]) //string to time format
 		check(err)
-		available, err := strconv.ParseBool(line[3])
+		available, err := strconv.ParseBool(line[3]) //string to bool
 		check(err)
 		data := doctorDetails{
 			drID:       drID,

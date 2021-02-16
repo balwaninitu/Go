@@ -1,5 +1,11 @@
 package main
 
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
 const (
 	title = `
 Welcome to "GO" Dental Clinic!
@@ -15,6 +21,20 @@ You are at "Appointment Booking Application"`
 7        :Exit
 Enter your choice [1-7]: `
 )
+
+// Display user choice list and accept user input
+func displayList() int {
+	fmt.Println()
+	fmt.Println(strings.TrimSpace(title))
+	fmt.Println(strings.Repeat("=", 40))
+	fmt.Print(strings.TrimSpace(listDisplay))
+	var userListInput int
+	_, err := fmt.Scanln(&userListInput)
+	if err != nil {
+		fmt.Println(errors.New("Error:No input"))
+	}
+	return userListInput
+}
 
 //Start of main program
 func main() {

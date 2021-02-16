@@ -8,10 +8,34 @@ import (
 	"time"
 )
 
-/*Remove func can be exported
-Remove function is access by admin only to delete past or current appointments if need arise.
-appointments can be search by its ID
-linked list will help to track
+/*#5 and #6 are for admin only which are protected by password
+func readAdminPassword is used to securely open sensitive document which for admin use only
+password information can get from chaneel running concurrently*/
+func readAdminPassword(ch chan string) {
+	defer recoverFromPanic()
+	text, err := ioutil.ReadFile("C:/Projects/Go/src/project3/password.txt")
+	if err != nil {
+		panic(errors.New("Wrong file name or path"))
+	}
+	//convert byte to string
+	password := string(text)
+	//println(password)
+	ch <- password
+}
+
+//password enter function, get error if there is no input.
+func enterAdminPassword() string {
+	var adminPassword string
+	fmt.Print("Enter Admin Password ")
+	_, err := fmt.Scanln(&adminPassword)
+	if err != nil {
+		fmt.Println(errors.New("Error:No input"))
+	}
+	return adminPassword
+}
+
+/*appointments can be search by its ID
+linked list will help to track available appointments
 only access to admin and supported by remove function of linked list*/
 func deleteAppointment(ClinicAppointmentList *ClinicAppointmentList) {
 	var aptID int
@@ -30,6 +54,7 @@ func deleteAppointment(ClinicAppointmentList *ClinicAppointmentList) {
 }
 
 // Remove method can be exported
+//Remove function is access by admin only to delete past or current appointments if need arise.
 func (c *ClinicAppointmentList) Remove(aptID int) bool {
 
 	/* Appointment list is empty
@@ -143,26 +168,4 @@ func recoverFromPanic() {
 	if r := recover(); r != nil {
 		fmt.Println("recovered from panic", r)
 	}
-}
-
-//#5 and #6 are for admin only which are protected by password
-//func readAdminPassword is used to securely open sensitive document which for admin use only
-func readAdminPassword(ch chan string) {
-	defer recoverFromPanic()
-	text, err := ioutil.ReadFile("C:/Projects/Go/src/project3/password.txt")
-	check(err)
-	//convert byte to string
-	password := string(text)
-	//println(password)
-	ch <- password
-}
-
-func enterAdminPassword() string {
-	var adminPassword string
-	fmt.Print("Enter Admin Password ")
-	_, err := fmt.Scanln(&adminPassword)
-	if err != nil {
-		fmt.Println(errors.New("Error:No input"))
-	}
-	return adminPassword
 }
