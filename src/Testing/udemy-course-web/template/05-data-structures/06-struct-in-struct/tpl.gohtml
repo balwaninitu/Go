@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Family and Friends</title>
+</head>
+<body>
+
+<ul>
+    {{range .MyFamily}}
+    <li>{{.Name}} - {{.Age}}</li>
+    {{end}}
+</ul>
+
+<ul>
+    {{range .MyFriends}}
+    <li>{{.Name}} - {{.Weight}} - {{.IsGood}}</li>
+    {{end}}
+</ul>
+
+</body>
+</html>
