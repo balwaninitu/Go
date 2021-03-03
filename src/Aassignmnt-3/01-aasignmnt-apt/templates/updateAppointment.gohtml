@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Appointment</title>
+    <style>
+        html, body {
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+
+        body, form {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+        input {
+            width: 60vw;
+            font-size: 5rem;
+            color: blue;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Update An Appointment</h1>
+<form method="post" action="/appointments/update/process">
+    <input type="text" name="appointmentid" placeholder="appointmentid" required autofocus value="{{.AppointmentID}}">
+    <input type="text" name="patientid" placeholder="patientid" required value="{{.PatientID}}">
+    <input type="text" name="doctorid" placeholder="doctorid" required value="{{.DoctorID}}">
+    <input type="text" name="scheduleid" placeholder="scheduleid" required value="{{.ScheduleID}}">
+    <input type="submit">
+</form>
+
+</body>
+</html>
