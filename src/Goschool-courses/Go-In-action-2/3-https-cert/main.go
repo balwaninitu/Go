@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -11,6 +12,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServeTLS(":8082", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", nil)
+	err := http.ListenAndServeTLS(":8081", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe", err)
+	}
 
 }

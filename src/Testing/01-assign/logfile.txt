@@ -1,0 +1,2 @@
+Common Logger:	2021/03/22 14:12:17 main.go:116: Displaying Doctors details
+Common Logger:	2021/03/22 14:13:35 main.go:116: Displaying Doctors details

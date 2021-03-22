@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Testing/01-assign/logger"
 	"database/sql"
 	"fmt"
 	"net/http"
@@ -16,7 +17,7 @@ var tpl *template.Template
 
 func init() {
 	var err error
-	db, err = sql.Open("postgres", "postgres://goschool:password@localhost/dentalclinic?sslmode=disable")
+	db, err = sql.Open("postgres", "postgres://postgres:password@localhost/dentalclinic?sslmode=disable")
 	if err != nil {
 		panic(err)
 	}
@@ -51,6 +52,7 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/doctorsdetails", http.StatusSeeOther)
+
 }
 
 func doctorsIndex(w http.ResponseWriter, r *http.Request) {
@@ -103,6 +105,7 @@ func showDoctors(w http.ResponseWriter, r *http.Request) {
 	switch {
 	case err == sql.ErrNoRows:
 		http.NotFound(w, r)
+
 		return
 	case err != nil:
 		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
@@ -110,6 +113,7 @@ func showDoctors(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tpl.ExecuteTemplate(w, "showDoctor.gohtml", dr)
+	logger.CommonLog.Println("Displaying Doctors details")
 }
 
 func createDoctors(w http.ResponseWriter, r *http.Request) {
@@ -133,6 +137,7 @@ func createDoctorsProcess(w http.ResponseWriter, r *http.Request) {
 	str, err := strconv.Atoi(i)
 	if err != nil {
 		http.Error(w, http.StatusText(406)+"Please enter a number for the id", http.StatusNotAcceptable)
+		logger.ErrorLog.Println("Wrong input")
 		return
 	}
 	dr.ID = int(str)

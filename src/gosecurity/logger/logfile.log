@@ -1,0 +1,7 @@
+Error Logger:	2021/03/22 15:39:25 appointment.go:101: Wrong input
+Warning Logger:	2021/03/22 15:43:40 appointment.go:139: Input ID not available
+Trace Logger:	2021/03/23 06:48:12 db.go:25: Connected to database
+Info Logger:	2021/03/23 06:49:59 appointment.go:168: Appointment details deleted from database
+Warning Logger:	2021/03/23 06:50:11 appointment.go:139: Input ID not available
+Warning Logger:	2021/03/23 06:50:22 doctorschedule.go:98: Doctor ID can not delete if it is scheduled already for appointment
+Trace Logger:	2021/03/23 06:58:27 db.go:25: Connected to database
