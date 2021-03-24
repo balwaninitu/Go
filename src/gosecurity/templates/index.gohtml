@@ -6,19 +6,18 @@
 </head>
 <body>
 <h1>Welcome to the Dental Appointment system</h1>
-{{if .First}}
-Welcome User {{.Username}}<br>
-Your first name is {{.First}}<br>
-Your last name is {{.Last}}<br>
-<br>
-Kindly check below routers to navigate<br>
-<br>
-/a for Appointments (Create Read and Delete only)<br>
-/d for Doctordetails  (Read and Update Doctor Name Only)<br>
-/s for Doctor's Schedule (Read Only)<br>
-/p for Patients Details  (Read Only)<br>
+{{if .Username}}
+<h1>Welcome User {{.Username}}</h1><br>
 
-<h2><a href="/restricted">Restricted Area</a></h2>
+<br>
+
+<br>
+<h2><a href="/a">Book Appointment (Create Read and Delete only)</a></h2>
+<h2><a href="/d"> Available Doctors (Read and Update Doctor Name Only)</a></h2>
+<h2><a href="/s"> Avaialble time slot of Doctors (Read Only)</a></h2>
+<h2><a href="/p"> Patients Details (Read Only)</a></h2>
+
+
 <h2><a href="/logout">Log Out</a></h2>
 {{else}}
 <h2>You are currently either not logged in or need to sign up for an account</h2>

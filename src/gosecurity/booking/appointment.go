@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-//order and naming of struct matches with table in database
+//Order and field name of struct Appointments matches with table in database.
 type Appointments struct {
 	AppointmentID int
 	PatientID     int
@@ -16,10 +16,16 @@ type Appointments struct {
 	ScheduleID    int
 }
 
+//IndexA route the request towards appointment booking page.
 func IndexA(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/appointments", http.StatusSeeOther)
 }
 
+//AppointmentIndex will display appointment information.
+//Admin can look for available appointments.
+//It will display which patient ID has appointment with which doctor ID and on what shedule ID.
+//      For Example: Patient ID 1 has appointment with Doctor ID 1 and their schedule ID is 1.
+//Each appointment has its own ID.
 func AppointmentIndex(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -47,8 +53,13 @@ func AppointmentIndex(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(500), 500)
 		return
 	}
+
 	config.TPL.ExecuteTemplate(w, "appointments.gohtml", apts)
 }
+
+//ShowAppointment will display all the booked appointments.
+/*If select on individual appointment ID, it will display information related to
+that selected appointment ID */
 func ShowAppointments(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -77,10 +88,13 @@ func ShowAppointments(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "showAppointment.gohtml", apt)
 }
 
+//CreateAppointment will facilitate in booking appointment.
 func CreateAppointments(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "createAppointment.gohtml", nil)
 }
 
+//CreateAppointmentProcess will allow to enter information in the given fields.
+//Once information like patient id etc has been added the appointment will get create.
 func CreateAppointmentProcess(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -135,7 +149,7 @@ func CreateAppointmentProcess(w http.ResponseWriter, r *http.Request) {
 	// insert id entered into application, Exec func executes query
 	_, err = config.DB.Exec("INSERT INTO appointments (appointmentid, patientid, doctorid, scheduleid) VALUES ($1, $2, $3, $4)", apt.AppointmentID, apt.PatientID, apt.DoctorID, apt.ScheduleID)
 	if err != nil {
-		http.Error(w, http.StatusText(406)+"- ID not avaialble to add, please add available ID only", http.StatusNotAcceptable)
+		http.Error(w, http.StatusText(406)+"- ID not avaialble, please input available ID only", http.StatusNotAcceptable)
 		logger.WarningLog.Println("Input ID not available")
 		return
 	}
@@ -145,6 +159,9 @@ func CreateAppointmentProcess(w http.ResponseWriter, r *http.Request) {
 	logger.TraceLog.Println("Appointment created")
 }
 
+//DeleteAppointment will facilitate in deleting booked appointment.
+/*Once the appointment delete doctor and DoctorSchedule ID will be available
+to book for susequent appointments. */
 func DeleteAppointment(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)

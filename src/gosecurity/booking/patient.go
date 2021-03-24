@@ -7,17 +7,20 @@ import (
 	"net/http"
 )
 
-//PatientDetails order and naming of struct matches with table in database
+//Order and field name of struct PatientDetails matches with table in database.
 type PatientDetails struct {
 	PatientID   int
 	PatientName string
 }
 
+//IndexD route the request towards the page where patients details are available.
 func IndexP(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/patientdetails", http.StatusSeeOther)
 
 }
 
+/*PatientIndex will display available patient details such patient ID
+and patient name in database. */
 func PatientIndex(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -49,7 +52,8 @@ func PatientIndex(w http.ResponseWriter, r *http.Request) {
 
 }
 
-//show available patients details in database
+//ShowPatient will display patient details available in database.
+//If click on individual patient ID, it will display information of each selected ID.
 func ShowPatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -78,6 +82,8 @@ func ShowPatient(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "showPatient.gohtml", pt)
 }
 
+//DeletePatient func can delete patients details only if patient ID doesnt have any booked appointment.
+//However, patient details can be deleted if it is not booked for any appointment.
 func DeletePatient(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"aaasecurity/booking"
-	"aaasecurity/user"
+	"gosecurity/booking"
+	"gosecurity/user"
 	"log"
 	"net/http"
 
@@ -14,7 +14,6 @@ func main() {
 	r := mux.NewRouter()
 	//routers for admin to signup/login to access appointment system
 	r.HandleFunc("/", user.Index)
-	r.HandleFunc("/restricted", user.Restricted)
 	r.HandleFunc("/signup", user.Signup)
 	r.HandleFunc("/login", user.Login)
 	r.HandleFunc("/logout", user.Logout)
@@ -43,9 +42,11 @@ func main() {
 	r.HandleFunc("/patientdetails/show", booking.ShowPatient)
 	r.HandleFunc("/patientdetails/delete/process", booking.DeletePatient)
 
-	// err := http.ListenAndServeTLS(":8082", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", nil)
+	// err := http.ListenAndServeTLS(":8082", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", r)
 	// if err != nil {
 	// 	log.Fatal("ListenAndServe", err)
 	// }
+	log.Println("Listening on port 5221...")
 	log.Fatal(http.ListenAndServe(":5221", r))
+
 }

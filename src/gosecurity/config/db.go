@@ -2,8 +2,8 @@ package config
 
 import (
 	"database/sql"
-	"fmt"
 	"gosecurity/logger"
+	"log"
 
 	_ "github.com/lib/pq"
 )
@@ -21,7 +21,7 @@ func init() {
 	if err = DB.Ping(); err != nil {
 		panic(err) //system will panic if no connection to database
 	}
-	fmt.Println("You are connected to your database.")
+	log.Println("You are connected to database.")
 	logger.TraceLog.Println("Connected to database")
 
 }

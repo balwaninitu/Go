@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//DoctorSchedule order and naming of struct matches with table in database
+//Order and field name of struct DoctorSchedule matches with table in database.
 type DoctorSchedule struct {
 	ScheduleID    int
 	DoctorID      string
@@ -16,6 +16,7 @@ type DoctorSchedule struct {
 	AvailableFlag bool
 }
 
+//IndexS route the request towards the page where each doctor schedule is available.
 func IndexS(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/doctorschedule", http.StatusSeeOther)
 
@@ -52,6 +53,8 @@ func ScheduleIndex(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//ShowDoctorSchedule will only display the doctors schedule available in database
+//It will not allow any changes in details as if the ID is scheduled already for appointment.
 func ShowDoctorSchedule(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)

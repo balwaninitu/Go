@@ -8,17 +8,20 @@ import (
 	"strconv"
 )
 
-//order and naming of struct matches with table in database
+//Order and field name of DoctorDetails struct matches with table in database.
 type DoctorDetails struct {
 	DoctorID   int
 	DoctorName string
 }
 
+//IndexD route the request towards the page where doctors details are available.
 func IndexD(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/doctordetails", http.StatusSeeOther)
 
 }
 
+/*DoctorIndex will display available doctor details such doctor ID
+and doctor name in database. */
 func DoctorIndex(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -50,6 +53,8 @@ func DoctorIndex(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//ShowDoctor will display doctor details available in database.
+//If click on individual doctor ID, it will display information of each selected ID.
 func ShowDoctor(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -78,6 +83,8 @@ func ShowDoctor(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "showDoctor.gohtml", dr)
 }
 
+/*UpdateDoctor func allow admin to update the doctor details
+such as doctor name for the available ID*/
 func UpdateDoctor(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -105,7 +112,7 @@ func UpdateDoctor(w http.ResponseWriter, r *http.Request) {
 	config.TPL.ExecuteTemplate(w, "updateDoctor.gohtml", dr)
 }
 
-//only allow to change doctor name
+//UpdateDoctorProcess can allow admin to change doctor name for the give Doctor ID.
 func UpdateDoctorProcess(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -141,6 +148,8 @@ func UpdateDoctorProcess(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//DeleteDoctor func can delete doctors details only if doctor ID is not schedule.
+//However, doctor details can be deleted if it is not scheduled.
 func DeleteDoctor(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
@@ -153,7 +162,7 @@ func DeleteDoctor(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// delete doctor details only when Doctor Id is not taken up in doctor's schedule
+	//Delete doctor details only when Doctor Id is not taken up in doctor's schedule
 	_, err := config.DB.Exec("DELETE FROM doctordetails WHERE doctorid=$1;", drid)
 	if err != nil {
 		http.Error(w, http.StatusText(406)+"- Doctor ID can not delete if it is scheduled already", http.StatusAlreadyReported)

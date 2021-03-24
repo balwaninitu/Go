@@ -28,8 +28,8 @@
 
 <h1>Update A Doctor</h1>
 <form method="post" action="/doctordetails/update/process">
-    <input type="text" name="doctorid" placeholder="doctorid" required autofocus value="{{.DoctorID}}">
-    <input type="text" name="doctorname" placeholder="doctorname" required value="{{.DoctorName}}">
+    <input type="text" name="doctorid" placeholder="doctorid" autocomplete = "off"  required autofocus value="{{.DoctorID}}">
+    <input type="text" name="doctorname" placeholder="doctorname"  autocomplete = "off" required value="{{.DoctorName}}">
     <input type="submit">
 </form>
 
