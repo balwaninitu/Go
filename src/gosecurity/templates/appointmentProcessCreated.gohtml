@@ -29,7 +29,7 @@
 <body>
 
 <p>Book A New Appointment</p>
-
+<<form method="GET" action="https://localhost:8081" autocomplete= "off">
 <p><a href="/appointments/show?appointmentid={{.AppointmentID}}">Appointment ID: {{.AppointmentID}} - Patient ID: {{.PatientID}} -Doctor ID: {{.DocotrID}} - Schedule ID: {{.ScheduleID}}  </a></p>
 <p class="link"><a href="/appointments">All Appointment</a></p>
 </body>

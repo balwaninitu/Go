@@ -6,12 +6,16 @@
 </head>
 <body>
 <h1>Welcome to the Dental Appointment system</h1>
+<form method="post" action="https://localhost:8081" autocomplete="off">
+
+
 {{if .Username}}
 <h1>Welcome User {{.Username}}</h1><br>
 
 <br>
 
 <br>
+
 <h2><a href="/a">Book Appointment (Create Read and Delete only)</a></h2>
 <h2><a href="/d"> Available Doctors (Read and Update Doctor Name Only)</a></h2>
 <h2><a href="/s"> Avaialble time slot of Doctors (Read Only)</a></h2>
@@ -23,8 +27,10 @@
 <h2>You are currently either not logged in or need to sign up for an account</h2>
 <h2><a href="/signup">Sign Up</a></h2>
 <h2><a href="/login">Log in</a></h2>
+
+
 {{end}}
 
-
+</form>
 </body>
 </html>

@@ -27,6 +27,7 @@
     </style>
 </head>
 <body>
+<form method="post" action="https://localhost:8081" autocomplete= "off">
 {{range .}}
 <p><a href="/doctordetails/show?doctorid={{.DoctorID}}">Doctor ID: {{.DoctorID}}</a> - Doctor Name: {{.DoctorName}}    <a href="/doctordetails/update?doctorid={{.DoctorID}}">update</a>  - <a href="/doctordetails/delete/process?doctorid={{.DoctorID}}">delete</a> </p>
 {{end}}

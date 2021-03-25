@@ -27,6 +27,7 @@
     </style>
 </head>
 <body>
+<form method="post" action="https://localhost:8081" autocomplete= "off"> 
 {{range .}}
 <p><a href="/appointments/show?appointmentid={{.AppointmentID}}">Appointment ID: {{.AppointmentID}}</a> - Patient ID: {{.PatientID}} - Doctor ID: {{.DoctorID}} - Schedule ID: {{.ScheduleID}}  <a href="/appointments/delete/process?appointmentid={{.AppointmentID}}">delete</a> </p>
 {{end}}

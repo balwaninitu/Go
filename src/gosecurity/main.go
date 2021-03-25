@@ -42,11 +42,10 @@ func main() {
 	r.HandleFunc("/patientdetails/show", booking.ShowPatient)
 	r.HandleFunc("/patientdetails/delete/process", booking.DeletePatient)
 
-	// err := http.ListenAndServeTLS(":8082", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", r)
-	// if err != nil {
-	// 	log.Fatal("ListenAndServe", err)
-	// }
-	log.Println("Listening on port 5221...")
-	log.Fatal(http.ListenAndServe(":5221", r))
+	err := http.ListenAndServeTLS(":8081", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", r)
+	if err != nil {
+		log.Fatal("ListenAndServe", err)
+
+	}
 
 }
