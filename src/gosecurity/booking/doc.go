@@ -106,23 +106,4 @@ Handlers:
 
 	   Handler when get invoked will use database func Exec which executes a delete query without returning
 	   any rows. The args are for ID to delete parameters in the query.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 */

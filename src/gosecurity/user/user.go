@@ -4,6 +4,7 @@ import (
 	"gosecurity/config"
 	"gosecurity/logger"
 	"net/http"
+	"time"
 
 	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
@@ -65,8 +66,9 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 			// create session
 			id, _ := uuid.NewV4()
 			myCookie := &http.Cookie{
-				Name:  "myCookie",
-				Value: id.String(),
+				Name:    "myCookie",
+				Value:   id.String(),
+				Expires: time.Now().Add(5 * time.Minute),
 			}
 			http.SetCookie(w, myCookie)
 			mapSessions[myCookie.Value] = username
@@ -106,19 +108,22 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		myUser, ok := mapUsers[username]
 		if !ok {
 			http.Error(w, "Username and/or password do not match", http.StatusUnauthorized)
+			logger.WarningLog.Println("Unsuccessful login attempt!")
 			return
 		}
 		// Matching of password entered
 		err := bcrypt.CompareHashAndPassword(myUser.Password, []byte(password))
 		if err != nil {
 			http.Error(w, "Username and/or password do not match", http.StatusForbidden)
+			logger.WarningLog.Println("Unsuccessful login attempt!")
 			return
 		}
 		// create session
 		id, _ := uuid.NewV4()
 		myCookie := &http.Cookie{
-			Name:  "myCookie",
-			Value: id.String(),
+			Name:    "myCookie",
+			Value:   id.String(),
+			Expires: time.Now().Add(5 * time.Minute),
 		}
 		http.SetCookie(w, myCookie)
 		mapSessions[myCookie.Value] = username
@@ -149,6 +154,7 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, myCookie)
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
+	logger.TraceLog.Println("Logout successfully!")
 }
 
 /*GetUser func will use set cookies func set-Cookie header to the

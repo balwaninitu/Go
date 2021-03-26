@@ -5,6 +5,7 @@ import (
 	"gosecurity/user"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -12,7 +13,7 @@ import (
 func main() {
 
 	r := mux.NewRouter()
-	//routers for admin to signup/login to access appointment system
+	//Routers for user signup/login
 	r.HandleFunc("/", user.Index)
 	r.HandleFunc("/signup", user.Signup)
 	r.HandleFunc("/login", user.Login)
@@ -42,7 +43,15 @@ func main() {
 	r.HandleFunc("/patientdetails/show", booking.ShowPatient)
 	r.HandleFunc("/patientdetails/delete/process", booking.DeletePatient)
 
-	err := http.ListenAndServeTLS(":8081", "C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem", r)
+	s := &http.Server{
+		Addr:              ":8081",
+		Handler:           r,
+		ReadHeaderTimeout: 10 * time.Second,
+		WriteTimeout:      30 * time.Second,
+		IdleTimeout:       5 * time.Second,
+	}
+
+	err := s.ListenAndServeTLS("C:/Users/Lenovo/cert.pem", "C:/Users/Lenovo/key.pem")
 	if err != nil {
 		log.Fatal("ListenAndServe", err)
 

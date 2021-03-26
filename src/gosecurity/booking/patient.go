@@ -100,7 +100,7 @@ func DeletePatient(w http.ResponseWriter, r *http.Request) {
 	_, err := config.DB.Exec("DELETE FROM patientdetails WHERE patientid=$1;", ptid)
 	if err != nil {
 		http.Error(w, http.StatusText(406)+"- Patient Id can not delete as appointment already booked with this ID", http.StatusNotAcceptable)
-		logger.WarningLog.Println("Doctor ID can not delete if it is scheduled already for appointment")
+		logger.WarningLog.Println("Patient ID can not delete if it is scheduled already for appointment")
 		return
 	}
 
