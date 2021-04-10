@@ -109,12 +109,4 @@ func main() {
 	// 200
 	// {"IOT210":{"Title":"Go Concurrency Programming"}}
 
-	// //courses = make(map[string]courseInfo)
-	// router := mux.NewRouter()
-	// router.HandleFunc("/baseURL", getCourse(code))
-	// router.HandleFunc("/api/v1/courses", allcourses)
-	// router.HandleFunc("/baseURL/{courseid}", getCourse()).GET(
-	// 	"GET")
-	// fmt.Println("Listening at port 5000")
-	// log.Fatal(http.ListenAndServe(":5000", router))
 }

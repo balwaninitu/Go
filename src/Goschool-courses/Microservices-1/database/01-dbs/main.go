@@ -14,6 +14,16 @@ type Person struct {
 	Age       int
 }
 
+func DeleteRecord(db *sql.DB, ID int) {
+	query := fmt.Sprintf(
+		"DELETE FROM Persons WHERE ID ='%d'", ID)
+	_, err := db.Query(query)
+	if err != nil {
+		panic(err.Error())
+	}
+
+}
+
 func InsertRecord(db *sql.DB, ID int, FN string, LN string, Age int) {
 	query := fmt.Sprintf("INSERT INTO Persons VALUES (%d,' %s', '%s', %d)",
 		ID, FN, LN, Age)
@@ -24,7 +34,7 @@ func InsertRecord(db *sql.DB, ID int, FN string, LN string, Age int) {
 	}
 }
 
-func EdittRecord(db *sql.DB, ID int, FN string, LN string, Age int) {
+func EditRecord(db *sql.DB, ID int, FN string, LN string, Age int) {
 	query := fmt.Sprintf(
 		"UPDATE Persons SET FirstName= '%s', LastName = '%s', Age=%d WHERE ID=%d",
 		FN, LN, Age, ID)
@@ -56,7 +66,7 @@ func GetRecords(db *sql.DB) {
 
 func main() {
 	db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/my_db")
-
+	//db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:52572)/my_db")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -64,8 +74,9 @@ func main() {
 
 	fmt.Println("Database opened")
 
-	//InsertRecord(db, 2, "Ryan", "Tan", 23)
-	//EditRecord(db, 2, )
+	InsertRecord(db, 10, "Ryan", "Tan", 23)
+	//EditRecord(db, 2, "Ariana", "Grande", 32)
+	//DeleteRecord(db, 2)
 	GetRecords(db)
 
 }
