@@ -74,7 +74,7 @@ func main() {
 
 	fmt.Println("Database opened")
 
-	InsertRecord(db, 10, "Ryan", "Tan", 23)
+	InsertRecord(db, 11, "Ryan", "Tan", 23)
 	//EditRecord(db, 2, "Ariana", "Grande", 32)
 	//DeleteRecord(db, 2)
 	GetRecords(db)
