@@ -13,7 +13,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-const baseURL = "http://localhost:8080/courses"
+const baseURL = "http://localhost:8081/courses"
 const key = "2c78afaf-97da-4816-bbee-9ad239abb296"
 
 var (
@@ -22,9 +22,13 @@ var (
 )
 
 func init() {
+	// to run service locally
+	//dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s",
+	//	"user", "password", "127.0.0.1:3306", "users_db")
 
+	//to run service on docker
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s",
-		"user", "password", "127.0.0.1:3306", "users_db")
+		"root", "password", "127.0.0.1:62958", "users_db")
 
 	Client, err = sql.Open("mysql", dataSourceName)
 

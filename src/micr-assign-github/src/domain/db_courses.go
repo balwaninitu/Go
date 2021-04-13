@@ -2,32 +2,24 @@ package domain
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
 
-	"courses_api/src/config"
-
-	"courses_api/src/utils"
+	"github.com/balwaninitu/courses_rest_api/src/config"
+	"github.com/balwaninitu/courses_rest_api/src/utils"
 )
 
 const (
-	queryCreateCourse = "INSERT INTO courses(title) VALUES(?);"
-	queryGetCourse    = "SELECT id, title FROM courses WHERE id=?;"
-	queryUpdateCourse = "UPDATE courses SET title=? WHERE id=?;"
-	queryDeleteCourse = "DELETE FROM courses WHERE id=?;"
+	queryGetCourse    = "SELECT id, title FROM gocourses WHERE id=?;"
+	queryCreateCourse = "INSERT INTO gocourses(id, title) VALUES(? , ?);"
+	queryUpdateCourse = "UPDATE gocourses SET title=? WHERE Id=?;"
+	queryDeleteCourse = "DELETE FROM gocourses WHERE id=?;"
 )
 
 type Courses struct {
-	Id    int64  `json:"id"`
+	Id    string `json:"id"`
 	Title string `json:"title"`
 }
-
-// func ValidKey(key string) utils.ApiErr {
-// 	key := ""
-// 	err =
-// 	if err != nil {
-// 		 return  utils.NewBadRequestError("invalid key")
-// 	 }
-// 	return  nil
-// }
 
 func (course *Courses) Get() utils.ApiErr {
 	stmt, err := config.Client.Prepare(queryGetCourse)
@@ -51,17 +43,19 @@ func (course *Courses) Create() utils.ApiErr {
 	}
 	defer stmt.Close()
 
-	//result, err := config.Client.Exec(queryCreateCourse,course.Title )
-
-	insertResult, createErr := stmt.Exec(course.Title)
+	insertCourse, createErr := stmt.Exec(course.Title)
 	if createErr != nil {
 		return utils.NewInternalServerError("error when trying to create course", errors.New("database error"))
 	}
-	courseId, err := insertResult.LastInsertId()
+
+	courseId, err := insertCourse.LastInsertId()
 	if err != nil {
 		return utils.NewInternalServerError("error when trying to create course", errors.New("database error"))
 	}
-	course.Id = courseId
+	course.Id = strconv.FormatInt(courseId, 10)
+	fmt.Println("from db_courses")
+	fmt.Println(course.Id)
+	fmt.Println(courseId)
 	return nil
 }
 
@@ -86,9 +80,9 @@ func (course *Courses) Delete() utils.ApiErr {
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(course.Id)
+	_, err = stmt.Exec(course.Title, course.Id)
 	if err != nil {
-		return utils.NewInternalServerError("error when trying to delete course", errors.New("database error"))
+		return utils.NewInternalServerError("error when trying to update course", errors.New("database error"))
 	}
 	return nil
 }

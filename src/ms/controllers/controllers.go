@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
-	"courses_api/src/domain"
+	"ms/domain"
 
-	"courses_api/src/services"
-	"courses_api/src/utils"
+	"ms/services"
+	"ms/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -69,6 +69,12 @@ func Create(c *gin.Context) {
 }
 
 func Get(c *gin.Context) {
+	// str, err := GetByKey(c.Param("access_token_id"))
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, err)
+	// 	return
+	// }
+	//c.JSON(http.StatusOK, str)
 	courseId, idErr := getCourseId(c.Param("course_id"))
 	if idErr != nil {
 		c.JSON(idErr.Status(), idErr)

@@ -20,15 +20,6 @@ type Courses struct {
 	Title string `json:"title"`
 }
 
-// func ValidKey(key string) utils.ApiErr {
-// 	key := ""
-// 	err =
-// 	if err != nil {
-// 		 return  utils.NewBadRequestError("invalid key")
-// 	 }
-// 	return  nil
-// }
-
 func (course *Courses) Get() utils.ApiErr {
 	stmt, err := config.Client.Prepare(queryGetCourse)
 	if err != nil {

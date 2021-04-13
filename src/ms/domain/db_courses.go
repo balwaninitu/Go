@@ -3,9 +3,9 @@ package domain
 import (
 	"errors"
 
-	"courses_api/src/config"
+	"ms/config"
 
-	"courses_api/src/utils"
+	"ms/utils"
 )
 
 const (
@@ -19,15 +19,6 @@ type Courses struct {
 	Id    int64  `json:"id"`
 	Title string `json:"title"`
 }
-
-// func ValidKey(key string) utils.ApiErr {
-// 	key := ""
-// 	err =
-// 	if err != nil {
-// 		 return  utils.NewBadRequestError("invalid key")
-// 	 }
-// 	return  nil
-// }
 
 func (course *Courses) Get() utils.ApiErr {
 	stmt, err := config.Client.Prepare(queryGetCourse)
