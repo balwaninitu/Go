@@ -1,0 +1,30 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+<body>
+
+<h3>Display User</h3>
+
+    {{if .Username}}
+   
+    <p>Username : {{ .Username}}</p>
+    <p>First Name: {{ .First }}</p>
+    <p>Last Name: {{ .Last }}</p>
+    <p>Contact Number: {{ .Tel }}</p>
+    <p>Email ID: {{ .EmailID }}</p>
+    <p>Address: {{ .Address }}</p>
+
+
+    <br>
+    
+    {{ end }}
+    {{template "menu"}}
+
+
+</body>
+</html>
+
+<!--
+ <p>Usertype: {{ .Usertype }}</p>
+//-->

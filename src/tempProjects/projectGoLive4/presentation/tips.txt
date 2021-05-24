@@ -1,0 +1,120 @@
+Project name and members
+
+Role of each member
+
+Motivation for this project! important issue
+evidence, statistics
+
+pictures of waste heaps, 
+something lacking, not working
+
+target customer
+need for this project
+
+competitors, benefit over them?
+
+primary differentiation
+potential benefits
+benefit for society
+believe in its purpose and use
+vitamins, minerals in each peel and their percentage versus the fruit
+----------------------------------------------------
+who are the users, who are the stake holders
+
+design for them
+what are the objectives
+
+-------------------------------------------------
+technologies used
+libraries
+tools
+languages
+docker, json, mysql, go, html, css
+use the symbols!!! images
+
+what skills? security, concurrency, json microservices
+
+-------------------------------------------------------
+limitations of project:
+reliant on packages - open source - which packages
+
+scalability?
+
+project time line:
+
+
+project improvements - add on:
+can more people
+delivery and payment options
+
+
+--------------------------------------------------------
+prioritize - core features first
+
+Questions:
+
+1) understanding
+2) some problem crops up , how to solve
+like server down? api connection fail?
+3) redundancy ? when system is down, what to do , or how to improve
+4) balance of coding and api, backend system- processing of data
+---------------------------------------------------------------------
+
+Fruit peel in general is peeled off or scraped in majority of fruits even when it is edible. Nevertheless the peel is being recog - nized as one of the essential component of our diet as it contains many vital nutrients and non-nutrient compounds which play important role in wellbeing. Peel is rich source of dietary fiber also known as NSP (non soluble polysaccharides) like hemi- cellulose, pectin, tannins, gum...etc. These compounds increase bulk of the food and helps prevent constipation by reducing gastro-intestinal transit time. They also bind to toxins in the food which helps to protect the mucus membrane of gut and thus cuts colon cancer risk. Furthermore, dietary fibers bind to bile salts (produced from cholesterol) and decrease their re-absorption, thus help lower serum LDL cholesterol levels. Peel is low in calories, sugar, and fats; and is from cholesterol. It adds to the bulk of the food and helps cut down overall food intake. Nevertheless, the peel of some fruits contains considerable amounts of mineral and vitamins, especially in guava and citrus fruits. Certain fruits peel like in orange contains more vitamin C (ascorbic acid) than its juice. The peel provides 136 mg per 100 g of vitamin C whereas the same in its pulp is just about 71 mg. Likewise the peel is rich source of vitamin A, B-complex vitamins, minerals such as calcium, selenium, manganese, zinc...etc several fold more than its pulp. Recent scientific trial studies suggest that certain compounds in passion fruit peel has bronchodilator effect and can help relieve bronchospasm in asthma patients. Hence, it is advised to eat fruits along with its peel in some allowed fruits, however, some cautions should be kept in mind while eating whole fruits. 
+
+------------------------------------------------------------------
+
+Inedible Peels
+
+    Avocado
+    Citrus fruits (grapefruit, lemon, lime, orange, etc)
+    Tropical fruits (banana, lychee, pineapple, papaya, etc)
+    Garlic
+    Hard winter squash
+    Melon
+    Onion
+
+Edible Peels
+
+    Apple
+    Apricot
+    Asparagus
+    Berries
+    Carrot
+    Citrus fruits (grated or cooked)
+    Cherries
+    Cucumber
+    Eggplant
+    Grape
+    Kiwi
+    Mushroom
+    Parsnip
+    Peach
+    Pear
+    Pea
+    Pepper
+    Plum
+    Potato
+    Squash (if well-cooked)
+    Zucchini
+
+------------------------------------------------------------------
+ Apple skin is rich in dietary fiber.
+
+2. Potato skin has iron, calcium, potassium, magnesium, vitamin B6 and vitamin C.
+
+3. Orange peel has riboflavin, vitamin B6, calcium, magnesium and potassium.
+
+4. Cucumber skin has antioxidants, insoluble fiber, potassium and vitamin K.
+
+5. Kiwi’s skin contains more flavonoids, antioxidants and vitamin C than the insides and double the fiber.
+
+6. An eggplant’s purple color skin has a powerful antioxidant, which helps protect against cancerous development. It is also believed to have anti-aging properties. Promotes glucose tolerance.
+
+7. Mango’s skin has carotenoids, omega-3, omega-6 and polyunsaturated fatty acids.
+
+8. Carrot’s skin has Phytonutrients.
+
+9. Watermelon’s skin contains antioxidant properties that are beneficial to the heart, immune system and circulatory system.
+
+10. Banana peel has more fiber than its flesh, and is likewise richer in potassium.

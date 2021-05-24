@@ -1,0 +1,28 @@
+{{template "hdr"}}
+
+
+{{template "companyname"}}
+
+<body>
+
+<h3>Display Product</h3>
+
+ {{if .ProdID}}
+
+<p>Book ID : {{ .ProdID }}</p>
+
+<p>Product Category : {{ .Cat }}</p>
+<p>Description: {{ .Shortdesc }}</p>
+<p>Stock Keeping Unit: {{ .Sku }}</p>
+<p>Unit Price (SGD): {{ .Uprice }}</p>
+<p>Available Qty: {{ .Availqty }}</p>
+<p>Minimum Stock Qty : {{ .Minstockqty   }}</p>
+
+<br></br>
+{{ end }}
+ 
+ {{template "menu"}}
+
+
+</body>
+</html>

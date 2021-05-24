@@ -32,6 +32,6 @@ func main() {
 
 	fmt.Println("Database opened")
 
-	InsertRecord(db, "g0010", "action")
+	InsertRecord(db, "g011", "action")
 
 }

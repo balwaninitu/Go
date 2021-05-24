@@ -1,0 +1,63 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+<body>
+
+<h3>Modify Product</h3>
+
+
+<p>Product Code : {{ .ProdID }}</p>
+<form method="post" action="/ModProdRec">
+
+    <input type="hidden" name="ProdID" placeholder="ProdID" value="{{ .ProdID}}"><br>
+
+
+    {{ with .Errors.Cat }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Cat">Product Category:</label>
+    <input type="text" name="Cat" placeholder="Product Category" value="{{.Cat}}"><br>
+
+    {{ with .Errors.Shortdesc }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Shortdesc">Description:</label>
+    <input type="text" name="Shortdesc" placeholder="Product Description" value="{{.Shortdesc}}"> <br>
+
+    {{ with .Errors.Sku }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Sku">Stock Keeping Unit:</label>
+    <input type="text" name="Sku" placeholder="Stock Keeping Unit" value="{{.Sku}}"> <br>
+
+    {{ with .Errors.Uprice }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Uprice">Unit Price (SGD):</label>
+    <input type="text" name="Uprice" placeholder="Unit Price" value="{{.Uprice}}"> <br>
+
+    {{ with .Errors.Availqty }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Availqty">Available Qty:</label>
+    <input type="text" name="Availqty" placeholder="Available Qty" value="{{.Availqty}}"> <br>
+
+    {{ with .Errors.Minstockqty   }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Minstockqty  ">Minimum Stock Qty (SGD):</label>
+    <input type="text" name="Minstockqty  " placeholder="Minimum Stock Qty " value="{{.Minstockqty  }}"> <br>        
+
+
+    <br>
+     <input  type="submit" value="Modify Product" name="submit">  
+
+
+
+</form>
+
+{{template "menu"}}
+
+</body>
+</html>

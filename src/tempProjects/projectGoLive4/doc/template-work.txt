@@ -1,0 +1,23 @@
+{{if .Inc 1}}
+    <h1> yes! </h1>
+    {{.Inc 1}}
+    {{(call .Sellerfunc 2)}}
+{{end}} 
+
+{{range $index, $element := .Selleritems}}
+    <tr>
+        <td>{{(call .Sellerfunc $index)}}</td>
+        <td>{{$element.Item}}</td>
+        <td>$element.Quantity</td>
+        <td>$element.Cost</td>
+    </tr>
+{{end}}
+
+<td>{{call .Addfunc 0}}</td>
+
+{{if eq ($element.Item "apple")}}
+                        <img src="/assets/apple.jpg" height=10px width=13px>
+                    {{else}}
+                        <img src="/assets/lemon.jpg" height=10px width=13px>
+                    {{end}}
+<td background = "/assets/apple.jpg" height="200px" width="200px"></td>

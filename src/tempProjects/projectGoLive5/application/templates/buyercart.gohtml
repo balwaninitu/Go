@@ -1,0 +1,103 @@
+{{template "header"}}
+<link rel="stylesheet" href="/assets/styles.css">
+<body>
+{{template "spacers"}}
+
+<body>
+
+<br>
+<div><a href="/buyer">Home</a></div>
+<div><a href="/buyer/findoneitem">Search an item</a></div>
+<div><a href="/logout">Log Out</a></div>
+<br>
+
+{{if .Buyername}}
+<div id="buyer"><span>Hello {{.Buyername}}</span></div>
+{{end}} 
+
+{{range $index, $element := .Mainmessage}}
+    {{if eq $index 0}}
+        <h3>{{$element}}</h3>
+    {{else}}    
+        <div>{{$element}}</div>
+    {{end}}
+{{end}}
+
+{{if eq .Operation "checkoutsuccess"}}
+
+{{end}}
+
+{{if eq .Operation "viewcart"}}
+{{ $itemcost := .CostPerItem }}
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Item name</th>
+            <th>Quantity (In kgs)</th>
+            <th>Cost (In SGD)</th>
+            <th>Seller name</th>
+            <th>Cost per Product</th>
+        </tr>
+        {{range $index, $element := .Items}}
+            <tr>
+                <td>
+                    {{if eq $element.Item "apple"}}
+                        <img src="/assets/apple.jpg" alt="apple" border=0 height=30 width=40></img>
+                    
+                    {{else if eq $element.Item "orange"}}
+                        <img src="/assets/orange.jpg" alt="orange" border=0 height=30 width=40></img>
+                    
+                    {{else if eq $element.Item "lemon"}}
+                        <img src="/assets/lemon.jpg" alt="lemon" border=0 height=30 width=40></img>
+                    
+                    {{else if eq $element.Item "grapefruit"}}
+                        <img src="/assets/grapefruit.jpg" alt="grapefruit" border=0 height=30 width=40></img>
+                    
+                    {{else if eq $element.Item "banana"}}
+                        <img src="/assets/banana.jpg" alt="banana" border=0 height=30 width=40></img>
+                   
+                    {{else if eq $element.Item "avacado"}}
+                        <img src="/assets/avacado.jpg" alt="avacado" border=0 height=30 width=40></img>
+ 
+                    {{else if eq $element.Item "kiwi"}}
+                        <img src="/assets/kiwi.jpg" alt="kiwi" border=0 height=30 width=40></img>
+                    
+                    {{else if eq $element.Item "watermelon"}}
+                        <img src="/assets/watermelon.jpg" alt="watermelon" border=0 height=30 width=40></img>
+
+                    {{end}}
+                </td>
+                <td>{{$element.Item}}</td>
+                <td>{{$element.Quantity}}</td>
+                <td>{{$element.Cost}}</td>
+                <td>{{$element.Username}}</td>
+                <td>
+                    {{index $itemcost $index}}
+                </td>    
+            </tr>
+        {{end}}
+    </table>
+
+{{if .Totalcost}}
+    <h3> Total Cost : {{.Totalcost}} </h3>
+{{end}}
+
+<form method="post" action="" style="display:inline-block;" >        
+    <input type="hidden" name="add_more" value="add">
+    <button type="submit" name="action" value="add_more">Add More Items</button>
+</form>
+
+<form method="post" action="" style="display:inline-block;">        
+    <input type="hidden" name="reset" value="reset">
+    <button type="submit" name="action" value="reset">Empty Cart</button>
+</form>
+
+<form method="post" action="" style="display:inline-block;">        
+    <input type="hidden" name="checkout" value="checkout">
+    <button type="submit" name="action" value="checkout">Checkout</button>
+</form>
+{{end}}
+
+
+</body>
+</html>

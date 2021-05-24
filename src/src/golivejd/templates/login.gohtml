@@ -1,0 +1,27 @@
+{{template "hdr"}}
+
+
+{{template "companyname"}}
+<h3>Please login</h3>
+
+<body>
+<form method="post">
+
+    {{ with .Errors.Username }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="username">Username:</label>
+    <input type="text" name="Username" placeholder="username" value="{{ .Username }}"><br>
+
+    {{ with .Errors.Password }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="password">Password:</label>
+    <input type="password" name="Password" placeholder="password" value="{{ .Password }}"><br>
+
+    <input type="submit" value="login">
+
+</form>
+
+</body>
+</html>

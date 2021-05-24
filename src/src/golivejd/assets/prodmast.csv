@@ -1,0 +1,4 @@
+ProdID,Cat,Shortdesc ,Sku,Unitprice ,AvailQrt,moq
+prod2,Ventilator,Ventilator-Ventilator,1,654.78,25,16
+prod3,Oxygen,Oxygen,1 kg,45.75,25,15
+prod4,Gloves,Gloves,1 box,4.56,39,4

@@ -1,0 +1,35 @@
+{{template "hdr"}}
+
+
+<body>
+
+<h3>Delete Product</h3>
+
+ {{if .ProdID}}
+
+<p> : {{ .ProdID }}</p>
+
+<p>Product Category : {{ .Cat }}</p>
+<p>Description: {{ .Shortdesc }}</p>
+<p>Stock Keeping Unit: {{ .Sku }}</p>
+<p>Unit Price(SGD): {{ .Uprice }}</p>
+<p>Available Qty: {{ .Availqty }}</p>
+<p>Minimum Stock Qty : {{ .Minstockqty   }}</p>
+
+{{ end }}
+
+<form method="post" action="/DelProdRec" >
+<input type="hidden" name="recFlag" id="recFlag" value="del"><br>
+<input type="hidden" name="ProdID" id="ProdID" value={{ .ProdID }}><br>
+
+<input  type="submit" value="Delete Product" name="submit">  
+
+</form>
+
+{{template "menu"}}
+
+
+</body>
+</html>
+
+ 

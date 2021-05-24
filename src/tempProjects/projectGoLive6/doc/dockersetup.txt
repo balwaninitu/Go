@@ -1,0 +1,143 @@
+---------------------------------------------------------------------------------------------------------------------
+To load existing database for recycle_db
+---------------------------------------------------------------------------------------------------------------------
+Open docker desktop and start recycle_db
+
+---------------------------------------------------------------------------------------------------------------------
+To update existing database for recycle_db using mysql commands
+---------------------------------------------------------------------------------------------------------------------
+Open cmd terminal, and run the following commands:
+mysql -P 33062 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+
+On reaching mysql> prompt type the following commands:
+
+USE recycle_db
+SELECT * FROM userdetails;
+
+---------------------------------------------------------------------------------------------------------------------
+To create new database for recycle_db : Single table for both buyers and sellers
+---------------------------------------------------------------------------------------------------------------------
+
+Open cmd terminal, and run the following commands:
+docker stop recycle_db
+docker rm recycle_db
+docker run --name recycle_db -p 33062:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+mysql -P 33062 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+On reaching mysql> prompt type the following commands:
+
+CREATE database recycle_db;
+USE recycle_db;
+
+DROP TABLE IF EXISTS userdetails;
+CREATE TABLE userdetails (Username VARCHAR(64) NOT NULL PRIMARY KEY, Password VARCHAR(128), Fullname VARCHAR(64), Isbuyer BOOLEAN, Phone VARCHAR(64), Address VARCHAR(128), Email VARCHAR(64));
+
+SELECT * FROM userdetails;
+
+SHOW CREATE TABLE userdetails;
+
+DELETE FROM `userdetails` WHERE Username="";
+DELETE FROM `userdetails` *;
+
+INSERT INTO `userdetails` VALUES ('freshfruits','aa','aa',0,00000000,'aa','aa');
+INSERT INTO `userdetails` VALUES ('coldpress','aa','aa',0,00000000,'aa','aa');
+INSERT INTO `userdetails` VALUES ('juicebox','aa','aa',0,00000000,'aa','aa');
+
+INSERT INTO `userdetails` VALUES ('skincare','aa','aa',1,00000000,'aa','aa');
+INSERT INTO `userdetails` VALUES ('ediblefilms','aa','aa',1,00000000,'aa','aa');
+INSERT INTO `userdetails` VALUES ('biochar','aa','aa',1,00000000,'aa','aa');
+
+
+UPDATE `userdetails` SET Username="freshfruits", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Ada Lovelace", Isbuyer=0, Phone=90009000, Address="Jurong Point, Jurong East", Email="peelrescue+freshfruits@gmail.com" WHERE Username='freshfruits';
+
+UPDATE `userdetails` SET Username="coldpress", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Mark Spencer", Isbuyer=0, Phone=90000009, Address="Ang Mo Kio Shop, Ang Mo kio", Email="peelrescue+coldpress@gmail.com" WHERE Username='coldpress';
+
+UPDATE `userdetails` SET Username="juicebox", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Eric Rockfeller", Isbuyer=0, Phone=88889999, Address="Causeway Point, Woodlands", Email="peelrescue+juicebox@gmail.com" WHERE Username='juicebox';
+
+UPDATE `userdetails` SET Username="skincare", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Charles Babbage", Isbuyer=1, Phone=9332211, Address="#10-10, Eunos Crescent, Eunos", Email="peelrescue+skincare@gmail.com" WHERE Username='skincare';
+
+UPDATE `userdetails` SET Username="ediblefilms", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Tara Croft", Isbuyer=1, Phone=91233210, Address="Blk 948, Pasir Ris Cove, Pasir Ris", Email="peelrescue+ediblefilms@gmail.com" WHERE Username='ediblefilms';
+
+UPDATE `userdetails` SET Username="biochar", Password="$2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae", Fullname="Andy Banks", Isbuyer=1, Phone=91234567, Address="Blk 673, Choa Chu Kang", Email="peelrescue+biochar@gmail.com" WHERE Username='biochar';
+
+=====================================================================================================================
+Sellers :
+
+freshfruits 12345678 
+coldpress 12345678
+juicebox 12345678
+=====================================================================================================================
+Buyers: 
+
+Username: ediblefilms
+Password: $2a$04$u9BJreW5HcMFBo3NxS4pdOC9xuUgwpLqC/k3LNapMh5vB8AEo.Gae == 12345678
+
+biochar		12345678
+skincare	12345678
+
+//lithiumrecycle  12345678
+//probiotics	12345678
+
+---------------------------------------------------------------------------------------------------------------------
+To load existing database for sellerAPI_db
+---------------------------------------------------------------------------------------------------------------------
+Open docker desktop and start sellerAPI_db
+
+---------------------------------------------------------------------------------------------------------------------
+Open docker desktop and start sellerAPI_db
+
+Open cmd terminal, and run the following commands:
+mysql -P 33061 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+
+On reaching mysql> prompt type the following commands:
+
+USE sellerAPIdb;
+SELECT * FROM `itemsdetails`;
+
+DROP TABLE IF EXISTS `itemsdetails`;
+
+CREATE TABLE `itemsdetails` (`Item` varchar(64) NOT NULL, `Quantity` int DEFAULT NULL, `Cost` float DEFAULT NULL, `Username` varchar(64) DEFAULT NULL) ;
+
+LOCK TABLES `itemsdetails` WRITE;
+INSERT INTO `itemsdetails` VALUES ('apple',39,1.5,'freshfruits'),('orange',73,3.0,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('banana',40,1.5,'freshfruits'),('grapefruit',30,3.5,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('avacado',50,2.0,'freshfruits'),('kiwi',38,4.5,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('lemon',28,2.0,'freshfruits'),('watermelon',18,4.5,'freshfruits');
+
+INSERT INTO `itemsdetails` VALUES ('apple',10,2.5,'coldpress'),('orange',13,2.5,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('banana',48,3.1,'coldpress'),('grapefruit',40,3.0,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('avacado',53,1.0,'coldpress'),('kiwi',25,4.0,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('lemon',35,3.0,'coldpress'),('watermelon',48,5.0,'coldpress');
+
+INSERT INTO `itemsdetails` VALUES ('apple',10,1.0,'juicebox'),('orange',33,2.0,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('banana',44,1.0,'juicebox'),('grapefruit',49,1.5,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('avacado',35,3.0,'juicebox'),('kiwi',25,1.5,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('lemon',22,1.5,'juicebox'),('watermelon',39,0.5,'juicebox');
+UNLOCK TABLES;
+
+SELECT * FROM `itemsdetails`;
+
+//SELECT * FROM `itemsdetails` WHERE Item='apple' AND Username='a'; 
+
+//SELECT * FROM `itemsdetails` WHERE Item='apple'; 
+ 
+//SELECT * FROM `itemsdetails` WHERE  Username='a';
+
+//LOCK TABLES `itemsdetails` WRITE;
+//INSERT INTO `itemsdetails` (Item, Quantity, Cost, Username) VALUES ("banana",4,6,"b");
+//UNLOCK TABLES;
+
+//UPDATE `itemsdetails` SET Item="bananas", Quantity=4, Cost=7, Username="b" WHERE Item='banana' AND Username='b';
+
+//DELETE FROM `itemsdetails` WHERE  Item='apple';  
+//DELETE FROM `itemsdetails` WHERE  Username='';
+//DELETE FROM `itemsdetails` WHERE  Username='freshfruits';
+//DELETE FROM `itemsdetails` WHERE  Username='coldpress';
+//DELETE FROM `itemsdetails` WHERE  Username='fruitfest';
+//DELETE FROM `itemsdetails` WHERE  Username='juicebox';
+//DELETE FROM `itemsdetails` WHERE  Username='harrypotter';
+
+SQL database is now ready to be used. 
+

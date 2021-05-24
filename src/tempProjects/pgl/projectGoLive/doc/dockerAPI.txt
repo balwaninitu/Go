@@ -1,0 +1,114 @@
+
+---------------------------------------------------------------------------------------------------------------------
+To load existing database
+---------------------------------------------------------------------------------------------------------------------
+Open docker desktop and start sellerAPIdb
+
+Open cmd terminal, and run the following commands:
+mysql -P 33061 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+
+On reaching mysql> prompt type the following commands:
+
+USE sellerAPIdb;
+SELECT * FROM `itemsdetails`;
+
+
+---------------------------------------------------------------------------------------------------------------------
+To create new database
+---------------------------------------------------------------------------------------------------------------------
+Open cmd terminal, and run the following commands:
+
+docker rm sellerAPIdb
+docker run --name sellerAPIdb -p 33061:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+mysql -P 33061 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+On reaching mysql> prompt type the following commands:
+
+CREATE database sellerAPIdb;
+USE sellerAPIdb;
+
+DROP TABLE IF EXISTS `itemsdetails`;
+
+CREATE TABLE `itemsdetails` (`Item` varchar(64) NOT NULL, `Quantity` int DEFAULT NULL, `Cost` float DEFAULT NULL, `Username` varchar(64) DEFAULT NULL) ;
+
+LOCK TABLES `itemsdetails` WRITE;
+INSERT INTO `itemsdetails` VALUES ('apple',1,1,'andy'),('apple',3,3,'bridget'),('orange',2,2,'akbar'),('orange',3,3,'birbal');
+UNLOCK TABLES;
+
+INSERT INTO `itemsdetails` VALUES ('apple',99,1,'freshfruits'),('orange',73,3,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('banana',40,1.5,'freshfruits'),('grapefruit',58,3.2,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('avacado',54,2.1,'freshfruits'),('kiwi',82,4.3,'freshfruits');
+INSERT INTO `itemsdetails` VALUES ('lemon',58,2.1,'freshfruits'),('watermelon',89,4.3,'freshfruits');
+
+
+INSERT INTO `itemsdetails` VALUES ('apple',1,1,'harrypotter'),('orange',3,3,'harrypotter');
+INSERT INTO `itemsdetails` VALUES ('banana',4,1.5,'harrypotter'),('grapefruit',5,3.2,'harrypotter');
+INSERT INTO `itemsdetails` VALUES ('avacado',5,2.1,'harrypotter'),('kiwi',8,4.3,'harrypotter');
+INSERT INTO `itemsdetails` VALUES ('lemon',5,2.1,'harrypotter'),('watermelon',8,4.3,'harrypotter');
+
+INSERT INTO `itemsdetails` VALUES ('apple',1,1,'coldpress'),('orange',3,3,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('banana',4,1.5,'coldpress'),('grapefruit',5,3.2,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('avacado',5,2.1,'coldpress'),('kiwi',8,4.3,'coldpress');
+INSERT INTO `itemsdetails` VALUES ('lemon',5,2.1,'coldpress'),('watermelon',8,4.3,'coldpress');
+
+INSERT INTO `itemsdetails` VALUES ('apple',1,1,'juicebox'),('orange',3,3,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('banana',4,1.5,'juicebox'),('grapefruit',5,3.2,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('avacado',5,2.1,'juicebox'),('kiwi',8,4.3,'juicebox');
+INSERT INTO `itemsdetails` VALUES ('lemon',5,2.1,'juicebox'),('watermelon',8,4.3,'juicebox');
+
+INSERT INTO `itemsdetails` VALUES ('apple',1,1,'fruitfest'),('orange',3,3,'fruitfest');
+INSERT INTO `itemsdetails` VALUES ('banana',4,1.5,'fruitfest'),('grapefruit',5,3.2,'fruitfest');
+INSERT INTO `itemsdetails` VALUES ('avacado',5,2.1,'fruitfest'),('kiwi',8,4.3,'fruitfest');
+INSERT INTO `itemsdetails` VALUES ('lemon',5,2.1,'fruitfest'),('watermelon',8,4.3,'fruitfest');
+
+
+SELECT * FROM `itemsdetails`;
+
+SELECT * FROM `itemsdetails` WHERE Item='apple' AND Username='a'; 
+
+SELECT * FROM `itemsdetails` WHERE Item='apple'; 
+ 
+SELECT * FROM `itemsdetails` WHERE  Username='a';
+
+LOCK TABLES `itemsdetails` WRITE;
+INSERT INTO `itemsdetails` (Item, Quantity, Cost, Username) VALUES ("banana",4,6,"b");
+UNLOCK TABLES;
+
+UPDATE `itemsdetails` SET Item="bananas", Quantity=4, Cost=7, Username="b" WHERE Item='banana' AND Username='b';
+
+DELETE FROM `itemsdetails` WHERE  Item='apple';  
+
+SQL database is now ready to be used. 
+
+
+http://localhost:5000/api/v1/seller/a
+http://localhost:5000/api/v1/seller/a/orange
+http://localhost:5000/api/v1/buyer
+http://localhost:5000/api/v1/buyer/a/orange
+
+--------------------------------------------------------------------------------------
+
+//Data structure for each item for JSON
+type ItemsDetails struct {
+	Item     string  `json:"Item"`
+	Quantity int     `json:"Quantity"`
+	Cost     float64 `json:"Cost"`
+	Username string  `json:"Username"`
+}
+
+false means its for buyer, true means for seller
+1) View All Items of all sellers, request made by a buyer : getItem("", "", false) 
+2) View A Particular Item, request made by a buyer : getItem(itemname,sellername, false)
+3) Add An item to a seller, request made by a buyer : This will not be allowed
+4) Update An item of a seller, request made by a buyer : updateItem(itemname, sellername, false, ItemsDetails)
+5) Delete An item of a seller, request made by a buyer : deleteItem(itemname, sellername, false)
+
+Additional points to note:
+1. Any change in quantity must be made in buyer.go code, that means need to request info for an item first, then looking at quantity of that item in shopping cart, quantity needs to be subtracted and then using update function need to update through seller API.
+2. Quantity can be 0, cost can be 0.0
+3. If quantity is 0, best to use delete instead of update.
+
+
+
+

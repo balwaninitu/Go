@@ -1,0 +1,47 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+<h3> Product Upload Summary </h3>
+
+<body>
+
+
+<table border="1">
+
+    <tr>
+        <th>Upload Status</th>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Stock Keeping Unit</th>
+        <th>Unit Price</th>
+        <th>Available Qty</th>
+        <th>Minimum Stock Qty</th>
+
+    </tr>
+    
+  {{ range $Key, $value := . }}
+    
+    
+        <tr>
+            <td>{{ .UpdStatus}}</td>
+            <td> {{$value.ProdID }} </td>  
+            <td>{{ .Cat }}</td>
+            <td>{{ .Shortdesc }}</td>
+            <td>{{ .Sku }}</td>
+            <td>{{ .Uprice }}</td>
+            <td>{{ .Availqty }}</td>
+            <td>{{ .Minstockqty }}</td>     
+
+        </tr>
+    {{ end }}
+</table>
+
+
+{{template "menu"}}
+
+</body>
+</html>
+
+ 

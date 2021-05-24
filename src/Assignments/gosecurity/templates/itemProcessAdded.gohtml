@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Item</title>
+    <style>
+        html, body, p {
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: left;
+            height: 100vh;
+        }
+        p {
+            margin-left: 4rem;
+            font-size: 2rem;
+            color: black;
+        }
+        .link {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<p>Add A New Item</p>
+<<form method="GET" action="https://localhost:8081" autocomplete= "off">
+<p><a href="/itemsdetails/show?Item={{.Item}}">Item: {{.Item}} - Quantity: {{.Quantity}} -Cost: {{.Cost}} - Username: {{.Username}}  </a></p>
+<p class="link"><a href="/itemsdetails">All Items</a></p>
+</body>
+</html>

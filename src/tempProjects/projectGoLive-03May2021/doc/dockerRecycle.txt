@@ -1,0 +1,66 @@
+Open cmd terminal, and run the following commands:
+docker stop recycle_db
+docker rm recycle_db
+docker run --name recycle_db -p 33062:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+mysql -P 33062 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+On reaching mysql> prompt type the following commands:
+CREATE database recycle_db;
+USE recycle_db;
+
+CREATE TABLE `sellerdetails` (Username VARCHAR(32) NOT NULL PRIMARY KEY, Password VARCHAR(60), Location VARCHAR(32));
+INSERT INTO `sellerdetails` (Username,Password,Location) VALUES ("pappu", "abcd","Clementi"); 
+SELECT * FROM `sellerdetails`;
+
+CREATE TABLE `buyerdetails` (Username VARCHAR(32) NOT NULL PRIMARY KEY, Password VARCHAR(60), Location VARCHAR(32));
+INSERT INTO `buyerdetails` (Username,Password,Location) VALUES ("munna", "1234","Sengkang"); 
+SELECT * FROM `buyerdetails`;
+
+
+SHOW CREATE TABLE sellerdetails;
+SHOW CREATE TABLE buyerdetails;
+-------------------------------------------------------------------------------------------------------------------------------------------
+Single table for both buyers and sellers
+-------------------------------------------------------------------------------------------------------------------------------------------
+Open cmd terminal, and run the following commands:
+docker stop recycle_db
+docker rm recycle_db
+docker run --name recycle_db -p 33062:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+mysql -P 33062 --protocol=tcp -u root -p
+when prompted: Enter password: Enter ‘password’
+On reaching mysql> prompt type the following commands:
+
+CREATE database recycle_db;
+USE recycle_db;
+
+//CREATE TABLE Userdetails (Username VARCHAR(128) NOT NULL PRIMARY KEY, Password VARCHAR(128), Isbuyer BOOLEAN, Location VARCHAR(128));
+//CREATE TABLE Userdetails (Username VARCHAR(128) NOT NULL UNIQUE, Password VARCHAR(128), Isbuyer BOOLEAN, Location VARCHAR(128));
+// CREATE TABLE Userdetails (Username VARCHAR(128) NOT NULL, Password VARCHAR(128), Isbuyer BOOLEAN, Location VARCHAR(128));
+
+DROP TABLE IF EXISTS Userdetails;
+CREATE TABLE Userdetails (Username VARCHAR(128) NOT NULL PRIMARY KEY, Password VARCHAR(128), Isbuyer BOOLEAN, Location VARCHAR(128));
+
+INSERT INTO Userdetails (Username,Password,Isbuyer,Location) VALUES ("munna", "1234",true,"Sengkang"); 
+INSERT INTO Userdetails (Username,Password,Isbuyer,Location) VALUES ("pappu", "1234",false,"Hougang"); 
+SELECT * FROM Userdetails;
+
+SHOW CREATE TABLE Userdetails;
+
+DELETE FROM `Userdetails` WHERE Username="munna";
+DELETE FROM `Userdetails` WHERE Username="pappu";
+
+mysqlcheck --auto-repair=true -uroot -p recycle_db
+
+mysqldump -u root -p sellerdetails > sellerdetails.db
+change something
+mysql -u root -p sellerdetails < sellerdetails.db
+
+ mysqlcheck --auto-repair=true -uroot -p <dbname>
+
+mysqldump -uUSER -pPASSWORD DBNAME > /tmp/my_backup.sql
+
+SQL database is now ready to be used. 
+
+poka koko
+harrypotter 1234
+pikachu pikapika

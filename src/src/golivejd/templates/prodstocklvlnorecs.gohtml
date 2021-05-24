@@ -1,0 +1,30 @@
+{{template "hdr"}}
+
+
+{{template "companyname"}}
+
+<body>
+<h3>Current Stock Level </h3>
+
+<table border="1">
+
+    <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Stock Keeping Unit</th>
+        <th>Unit Price</th>
+        <th>Available Qty</th>
+        <th>Minimum Stock Qty</th>
+
+    </tr>   
+        <tr align="center" colspan="7">
+           <td align="center" colspan="7">{{ .}}</td>
+        </tr>
+ 
+</table>
+
+{{template "menu"}}
+
+</body>
+</html>

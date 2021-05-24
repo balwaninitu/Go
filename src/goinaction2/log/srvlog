@@ -1,0 +1,1 @@
+ERROR: 2021/03/28 17:11:31 server.go:843: Error in login Validation : Key: 'loginInput.Password' Error:Field validation for 'Password' failed on the 'min' tag

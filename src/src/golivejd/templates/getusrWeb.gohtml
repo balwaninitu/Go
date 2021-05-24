@@ -1,0 +1,25 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+<body>
+<h3>Get User</h3>
+
+
+<form method="post">
+
+    {{ with .Errors.Username }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="Username">Username:</label>
+    <input type="text" name="Username" placeholder="Username"><br>
+
+     <input  type="submit" value="GetUser" name="submit"> 
+  
+
+</form>
+
+{{template "menu"}}
+
+ </body>
+</html>

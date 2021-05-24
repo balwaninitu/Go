@@ -1,0 +1,35 @@
+{{template "header"}}
+<body>
+{{template "spacers"}}
+<h2>Please signup for a new account or <a href="/login">Login</a></h2>
+
+<form method="post" enctype="multipart/form-data" autocomplete="off" >
+    <label class="required" for="username">Username: </label>
+    <input type="text" autocomplete="off" id="username" name="username" placeholder="username" required>
+    <br>
+    <label class="required" for="password">Password: </label>
+    <input type="password" autocomplete="off" id="password" name="password" placeholder="password" min="5" max="16" required>
+    <br>
+    <label class="required"  for="location">Location: </label>
+    <input type="text" autocomplete="off" id="location" name="location" placeholder="Location" required>
+    <br>
+    <p>Are you a buyer or a seller?</p>
+    <input type="radio" id="buyer" name="isbuyer" inline value="true">
+    <label for="buyer">Buyer</label><br>
+    <input type="radio" id="seller" name="isbuyer" inline checked value="false">
+    <label for="seller">Seller</label><br>
+    <br>
+
+    <form method="post" enctype="multipart/form-data" style="display:inline-block;"> 
+        <input type="hidden" name="signup" value="signup">
+        <button type="submit" value="signup">Sign Up</button>
+    </form>
+    
+    <form method="post" enctype="multipart/form-data" style="display:inline-block;"> 
+        <input type="hidden" name="reset" value="reset">
+        <button type="submit" value="reset">Reset</button>
+    </form>
+</form>
+
+</body>
+</html>

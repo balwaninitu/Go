@@ -1,0 +1,32 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+
+<body>
+
+<h3>Delete User</h3>
+
+<form method="post"  action="/DelUsrDet">
+ 
+<input type="hidden" name="Username" placeholder="Username" value="{{.Username}}"> <br>
+
+    <p>User Name : {{ .Username }}</p>
+    <p>First Name: {{ .First }}</p>
+    <p>Last Name: {{ .Last }}</p>
+
+    <p>Contact Number: {{ .Tel }}</p>
+    <p>Email ID: {{ .EmailID }}</p>
+    <p>Address: {{ .Address }}</p>
+    
+<input  type="submit" value="Delete User" name="submit">  
+
+</form>
+
+{{template "menu"}}
+
+
+</body>
+</html>
+
+ 

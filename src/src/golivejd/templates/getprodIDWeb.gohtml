@@ -1,0 +1,27 @@
+{{template "hdr"}}
+
+
+
+{{template "companyname"}}
+
+<body>
+<h3>Get Product Code</h3>
+
+
+<form method="post">
+
+    {{ with .Errors.ProdID }}
+    <p class="error">{{ . }} </p>
+    {{ end }}
+    <label for ="ProdID">Product Code:</label>
+    <input type="text" name="ProdID" placeholder="Product Code"><br>
+
+     <input  type="submit" value="GetProdCode" name="submit"> 
+  
+
+</form>
+
+{{template "menu"}}
+
+ </body>
+</html>

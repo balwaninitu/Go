@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>users - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="users%20-%20Go%20Documentation%20Server_files/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="users%20-%20Go%20Documentation%20Server_files/jquery.js" defer="defer"></script>
+
+
+
+<script>var goVersion = "go1.15.6";</script>
+<script src="users%20-%20Go%20Documentation%20Server_files/godocs.js" defer="defer"></script>
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+<form method="GET" action="/search">
+<div id="menu" style="min-width: 60px;">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required=""><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide" style="outline: currentcolor none 0px;" tabindex="-1">
+<div class="container">
+
+
+  <h1>
+    Package users
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "golivejd/users"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>
+Package users is desgined to register new users, update/delete/view existing users details
+It uses github's satori to generate a unique ID to keep track of customers' session
+All passwords are created using native bcruypt library
+</p>
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#AlreadyLoggedIn">func AlreadyLoggedIn(req *http.Request) bool</a></dd>
+			
+			
+				
+				<dd><a href="#IDErrMsg">type IDErrMsg</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#IDErrMsg.ValidateID">func (msg *IDErrMsg) ValidateID() bool</a></dd>
+				
+			
+				
+				<dd><a href="#User">type User</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetUser">func GetUser(res http.ResponseWriter, req *http.Request) User</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetUserRecDB">func GetUserRecDB(unamePar string) (User, int)</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#User.UserFormValidate">func (msg *User) UserFormValidate() bool</a></dd>
+				
+			
+				
+				<dd><a href="#UsersHandler">type UsersHandler</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewUsersHandler">func NewUsersHandler(db *sql.DB) *UsersHandler</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.AddUserRecDB">func (h *UsersHandler) AddUserRecDB(msg User) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.AddUsr">func (h *UsersHandler) AddUsr(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.DelUserRecDB">func (h *UsersHandler) DelUserRecDB(Username string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.DelUsr">func (h *UsersHandler) DelUsr(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.DelUsrDetail">func (h *UsersHandler) DelUsrDetail(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.DisUsr">func (h *UsersHandler) DisUsr(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.Login">func (h *UsersHandler) Login(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.Logout">func (h *UsersHandler) Logout(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.ModUserRecDB">func (h *UsersHandler) ModUserRecDB(msg User) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.ModUsr">func (h *UsersHandler) ModUsr(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.ModUsrDetail">func (h *UsersHandler) ModUsrDetail(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.Signup">func (h *UsersHandler) Signup(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UsersHandler.UplUsrMast">func (h *UsersHandler) UplUsrMast(res http.ResponseWriter, req *http.Request)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/golivejd/users/users.go">users.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables <a class="permalink" href="#pkg-variables">¶</a></h2>
+			
+				<p>
+MapSessions is a map to capture logined users sessions for security reasons
+</p>
+
+				<pre>var <span id="MapSessions">MapSessions</span> = map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>{}</pre>
+			
+				<p>
+MapUsers is a map used to store registered customers' details including hased passwords
+</p>
+
+				<pre>var <span id="MapUsers">MapUsers</span> = map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="#User">User</a>{}</pre>
+			
+		
+		
+			
+			
+			<h2 id="AlreadyLoggedIn">func <a href="http://localhost:6060/src/golivejd/users/users.go?s=16594:16638#L669">AlreadyLoggedIn</a>
+				<a class="permalink" href="#AlreadyLoggedIn">¶</a>
+				
+				
+			</h2>
+			<pre>func AlreadyLoggedIn(req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>) <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+			<p>
+func AlreadyLoggedIn is a middleware to prevent multiple logins of customers
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="IDErrMsg">type <a href="http://localhost:6060/src/golivejd/users/users.go?s=1375:1508#L40">IDErrMsg</a>
+				<a class="permalink" href="#IDErrMsg">¶</a>
+				
+				
+			</h2>
+			<p>
+IDErrMsg is data structure to collect data entry error msgs for the purpose of data sanity
+</p>
+
+			<pre>type IDErrMsg struct {
+<span id="IDErrMsg.Username"></span>    Username <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="IDErrMsg.Password"></span>    Password <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="IDErrMsg.RecFlag"></span>    RecFlag  <a href="http://localhost:6060/pkg/builtin/#string">string</a> <span class="comment">// Add, del, dis, modify</span>
+
+<span id="IDErrMsg.Errors"></span>    Errors map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="IDErrMsg.ValidateID">func (*IDErrMsg) <a href="http://localhost:6060/src/golivejd/users/users.go?s=2755:2793#L94">ValidateID</a>
+					<a class="permalink" href="#IDErrMsg.ValidateID">¶</a>
+					
+					
+				</h3>
+				<pre>func (msg *<a href="#IDErrMsg">IDErrMsg</a>) ValidateID() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+func ValidateID will be used to verify users's login/pwd entries
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="User">type <a href="http://localhost:6060/src/golivejd/users/users.go?s=560:989#L15">User</a>
+				<a class="permalink" href="#User">¶</a>
+				
+				
+			</h2>
+			<p>
+User struc is used to store list of registered customers
+</p>
+
+			<pre>type User struct {
+<span id="User.Username"></span>    Username     <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="User.Usertype"></span>    Usertype     <a href="http://localhost:6060/pkg/builtin/#string">string</a> <span class="comment">//admin with all previleges or normal with less previleges</span>
+<span id="User.Password"></span>    Password     <a href="http://localhost:6060/pkg/builtin/#string">string</a> <span class="comment">//string pwd - wont be stored</span>
+<span id="User.HashPassword"></span>    HashPassword []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a> <span class="comment">//hashed pwd</span>
+
+<span id="User.First"></span>    First   <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="User.Last"></span>    Last    <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="User.Address"></span>    Address <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="User.Tel"></span>    Tel     <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+<span id="User.EmailID"></span>    EmailID <a href="http://localhost:6060/pkg/builtin/#string">string</a>
+
+<span id="User.RecFlag"></span>    RecFlag <a href="http://localhost:6060/pkg/builtin/#string">string</a>            <span class="comment">// Add, del, dis, modify</span>
+<span id="User.Errors"></span>    Errors  map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> <span class="comment">// collect form fields data entry error msgs...</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="GetUser">func <a href="http://localhost:6060/src/golivejd/users/users.go?s=16036:16097#L645">GetUser</a>
+					<a class="permalink" href="#GetUser">¶</a>
+					
+					
+				</h3>
+				<pre>func GetUser(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>) <a href="#User">User</a></pre>
+				<p>
+func GetUser to keep track of session
+</p>
+
+				
+				
+			
+				
+				<h3 id="GetUserRecDB">func <a href="http://localhost:6060/src/golivejd/users/users.go?s=19680:19726#L817">GetUserRecDB</a>
+					<a class="permalink" href="#GetUserRecDB">¶</a>
+					
+					
+				</h3>
+				<pre>func GetUserRecDB(unamePar <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (<a href="#User">User</a>, <a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
+				<p>
+GetUserRecDB will extract user record from database
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="User.UserFormValidate">func (*User) <a href="http://localhost:6060/src/golivejd/users/users.go?s=1863:1903#L62">UserFormValidate</a>
+					<a class="permalink" href="#User.UserFormValidate">¶</a>
+					
+					
+				</h3>
+				<pre>func (msg *<a href="#User">User</a>) UserFormValidate() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+func BookFormValidate is used to validate user details during data entry
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="UsersHandler">type <a href="http://localhost:6060/src/golivejd/users/users.go?s=1574:1616#L50">UsersHandler</a>
+				<a class="permalink" href="#UsersHandler">¶</a>
+				
+				
+			</h2>
+			<p>
+UsersHandler is a handle to opened database connection
+</p>
+
+			<pre>type UsersHandler struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewUsersHandler">func <a href="http://localhost:6060/src/golivejd/users/users.go?s=1693:1739#L55">NewUsersHandler</a>
+					<a class="permalink" href="#NewUsersHandler">¶</a>
+					
+					
+				</h3>
+				<pre>func NewUsersHandler(db *<a href="http://localhost:6060/pkg/database/sql/">sql</a>.<a href="http://localhost:6060/pkg/database/sql/#DB">DB</a>) *<a href="#UsersHandler">UsersHandler</a></pre>
+				<p>
+NewUsersHandler helps to call user functions using the open db handle
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="UsersHandler.AddUserRecDB">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=20691:20742#L867">AddUserRecDB</a>
+					<a class="permalink" href="#UsersHandler.AddUserRecDB">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) AddUserRecDB(msg <a href="#User">User</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+AddUserRecDB will add new user record to database
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.AddUsr">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=4485:4558#L163">AddUsr</a>
+					<a class="permalink" href="#UsersHandler.AddUsr">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) AddUsr(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func AddUsr will be used to register coustomers
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.DelUserRecDB">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=22176:22234#L915">DelUserRecDB</a>
+					<a class="permalink" href="#UsersHandler.DelUserRecDB">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) DelUserRecDB(Username <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+DelUserRecDB will delete user record from database
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.DelUsr">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=7643:7716#L296">DelUsr</a>
+					<a class="permalink" href="#UsersHandler.DelUsr">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) DelUsr(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func DelUsr &amp; func DelUsrDetail are meant for deleting a users
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.DelUsrDetail">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=9889:9968#L404">DelUsrDetail</a>
+					<a class="permalink" href="#UsersHandler.DelUsrDetail">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) DelUsrDetail(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func DelUsrDetail &amp; func DelUsr are meant for deleting a users
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.DisUsr">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=6256:6329#L232">DisUsr</a>
+					<a class="permalink" href="#UsersHandler.DisUsr">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) DisUsr(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func DisUsr will be used to display existing users details
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.Login">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=14206:14278#L564">Login</a>
+					<a class="permalink" href="#UsersHandler.Login">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) Login(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func Login allows a users to log into the application
+this will also setup related sessions and cookies
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.Logout">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=15520:15593#L624">Logout</a>
+					<a class="permalink" href="#UsersHandler.Logout">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) Logout(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func Logout allows a users to logout of the application
+this will also delete related sessions and cookies
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.ModUserRecDB">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=21395:21446#L887">ModUserRecDB</a>
+					<a class="permalink" href="#UsersHandler.ModUserRecDB">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) ModUserRecDB(msg <a href="#User">User</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+ModUserRecDB will update new user record in the database
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.ModUsr">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=8863:8936#L351">ModUsr</a>
+					<a class="permalink" href="#UsersHandler.ModUsr">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) ModUsr(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func ModUsr &amp; func ModUsrDetail are meant to modify existing users details
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.ModUsrDetail">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=10590:10669#L429">ModUsrDetail</a>
+					<a class="permalink" href="#UsersHandler.ModUsrDetail">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) ModUsrDetail(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func ModUsrDetail &amp; func ModUsr are meant to modify existing users details
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.Signup">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=11729:11802#L471">Signup</a>
+					<a class="permalink" href="#UsersHandler.Signup">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) Signup(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+func Signup is used to register new users
+this will also create sessions and cookies
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="UsersHandler.UplUsrMast">func (*UsersHandler) <a href="http://localhost:6060/src/golivejd/users/users.go?s=16856:16933#L685">UplUsrMast</a>
+					<a class="permalink" href="#UsersHandler.UplUsrMast">¶</a>
+					
+					
+				</h3>
+				<pre>func (h *<a href="#UsersHandler">UsersHandler</a>) UplUsrMast(res <a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#ResponseWriter">ResponseWriter</a>, req *<a href="http://localhost:6060/pkg/net/http/">http</a>.<a href="http://localhost:6060/pkg/net/http/#Request">Request</a>)</pre>
+				<p>
+UplUsrMast - upload user master
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.15.6.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

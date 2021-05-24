@@ -1,0 +1,45 @@
+h1 {
+    color: rgba(190, 12, 12, 0.795);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 150%;      
+    justify-content: center;
+  }
+h2 {
+    color: rgb(9, 141, 9);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:100%;
+  }
+p {
+    color: rgb(0, 0, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 120%;
+    font-style: bold;
+  }
+table {
+    width:800px; 
+    border: 8px solid black";
+}
+th, td {
+    border: 2px solid rgb(242, 248, 163);
+    width:50px;
+    height:40px;
+    text-align: center;
+}
+.required:after {
+    content:" *";
+    color: red;
+}
+div#warning span {
+    background-color:rgb(182, 182, 182);
+    line-height:2;
+    font-style: bold;
+    color: red;
+}
+div#seller span {
+    background-color:rgb(238, 240, 228);
+    line-height:4;
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 120%;
+    color: rgb(2, 36, 110);
+}

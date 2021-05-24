@@ -1,0 +1,44 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+<h3>  User Master Upload Summary</h3>
+
+<body>
+
+<table border="1">
+
+    <tr>
+        <th>Upload Status</th>
+        <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Address</th>
+        <th>Contact Number</th>
+        <th>Email ID</th>
+
+    </tr>
+    
+   {{ range . }}
+    
+        <tr>
+            <td>{{ .UpdStatus}}</td>
+            <td>{{ .Username }}</td>
+            <td>{{ .First }}</td>
+            <td>{{ .Last }}</td>
+            <td>{{ .Address }}</td>
+            <td>{{ .Tel }}</td>
+            <td>{{ .EmailID }}</td>     
+
+        </tr>
+    {{ end }}
+</table>
+
+
+
+{{template "menu"}}
+
+</body>
+</html>
+
+ 

@@ -1,0 +1,23 @@
+{{template "hdr"}}
+
+{{template "companyname"}}
+
+{{if .Username }}
+
+<h3> <b> User: {{.Username}}  </b> </h3>
+<br>
+
+<body>
+
+{{template "menu"}}
+
+{{else}}
+
+<h3>Please log in or sign up:&nbsp; <a href="/signup">Sign Up</a> &nbsp;&nbsp; <a href="/login">Log in</a></h3>
+
+{{end}}
+
+
+
+</body>
+</html>

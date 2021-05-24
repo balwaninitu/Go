@@ -1,0 +1,25 @@
+{{template "header"}}
+<link rel="stylesheet" href="/assets/styles.css">
+<body>
+{{template "spacers"}}
+
+
+<h3>Hello Admin!</h3>
+
+{{if eq .Operation "view"}}
+    <h1> VIEW SELLER : </h1>
+{{end}}
+
+{{range $index, $element := .Mainmessage}}
+    {{if eq $index 0}}
+        <h3>{{$element}}</h3>
+    {{else}}    
+        <div>{{$element}}</div>
+    {{end}}
+{{end}}
+
+<h2><a href="/admin/viewseller">View Seller</a></h2>
+<h2><a href="/admin/viewseller">View Buyer</a></h2>
+
+</body>
+</html>

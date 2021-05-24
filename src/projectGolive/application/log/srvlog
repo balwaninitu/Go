@@ -1,0 +1,28 @@
+ERROR: 2021/05/04 12:05:21 seller.go:45: Unable to get item data for seller harrypotter 
+ERROR: 2021/05/04 12:06:47 seller.go:45: Unable to get item data for seller harrypotter 
+ERROR: 2021/05/04 17:42:20 server.go:259: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/05 18:33:48 server.go:259: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/06 08:14:38 server.go:259: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/06 11:36:37 server.go:257: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/07 12:29:11 server.go:272: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/08 14:46:30 server.go:186: Sanitization error
+ERROR: 2021/05/08 14:55:34 server.go:287: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/10 16:42:57 apiclient.go:180: Item already exists! Try again.
+ERROR: 2021/05/10 16:42:58 seller.go:92: Unable to connect to Database!
+ERROR: 2021/05/10 17:18:49 server.go:329: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/10 17:25:43 server.go:329: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/10 17:32:28 server.go:329: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/11 10:52:27 server.go:292: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/11 14:30:08 apiclient.go:182: Item already exists! Try again.
+ERROR: 2021/05/11 16:04:27 server.go:291: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/11 16:04:28 buyer.go:46: Unable to connect to Database!
+ERROR: 2021/05/11 16:05:16 server.go:291: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/05/11 16:05:16 buyer.go:46: Unable to connect to Database!
+ERROR: 2021/05/11 22:59:12 apiclient.go:297: Item not found. Try again
+ERROR: 2021/05/11 22:59:12 apiclient.go:298: 
+ERROR: 2021/05/12 10:19:43 apiclient.go:182: Item already exists! Try again.
+ERROR: 2021/05/12 10:20:05 apiclient.go:182: Item already exists! Try again.
+ERROR: 2021/05/12 10:20:13 apiclient.go:182: Item already exists! Try again.
+ERROR: 2021/05/13 08:39:43 apiclient.go:182: Item already exists! Try again.
+ERROR: 2021/05/14 07:36:17 apiclient.go:266: Item not found. Try again
+ERROR: 2021/05/14 07:36:17 apiclient.go:267: 
