@@ -1,4 +1,6 @@
-/*Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+/*Given a signed 32-bit integer x, return x with its digits reversed.
+ If reversing x causes the value to go outside the signed 32-bit integer
+ range [-231, 231 - 1], then return 0.
 
 Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
 Example 1:
@@ -33,16 +35,16 @@ import (
 func reverseInt(x int) int {
 	n := 0
 
-	//for x > 0{
 	for x != 0 {
 		if n > math.MaxInt32/10 || n < math.MinInt32/10 {
 			return 0
 		}
 
-		//isolate last digit num by modulus 10
-		//it return last digit as remainder
-		//e.g incase of 1234, 1000%10, 200%10, 30%10 == no remainder only 4(unit place) will be remainder
-		/*1st iteration:
+		/*isolate last digit num by modulus 10
+		it return last digit as remainder
+		e.g incase of 1234, 1000%10, 200%10, 30%10 == no remainder only 4(unit place)
+		 will be remainder
+		1st iteration:
 		x = -1234
 		n = 0
 		remainder= -4,

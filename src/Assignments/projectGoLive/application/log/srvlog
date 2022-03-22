@@ -26,3 +26,15 @@ ERROR: 2021/05/12 10:20:13 apiclient.go:182: Item already exists! Try again.
 ERROR: 2021/05/13 08:39:43 apiclient.go:182: Item already exists! Try again.
 ERROR: 2021/05/14 07:36:17 apiclient.go:266: Item not found. Try again
 ERROR: 2021/05/14 07:36:17 apiclient.go:267: 
+ERROR: 2021/07/15 13:23:16 seller.go:49: Unable to get item data for seller a 
+ERROR: 2021/07/15 13:24:40 seller.go:49: Unable to get item data for seller a 
+ERROR: 2021/07/15 13:27:03 seller.go:49: Unable to get item data for seller david 
+ERROR: 2021/07/15 13:34:02 seller.go:49: Unable to get item data for seller david 
+ERROR: 2021/07/15 13:35:37 seller.go:49: Unable to get item data for seller jo 
+ERROR: 2021/07/15 13:39:03 apiclient.go:164: Item already exists! Try again.
+ERROR: 2021/07/15 13:41:11 email.go:114: 535 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials e2sm5491440pgh.5 - gsmtp
+ERROR: 2021/07/16 09:34:31 apiclient.go:164: Item already exists! Try again.
+ERROR: 2021/07/16 09:37:46 server.go:208: Concurrent Login detected! Concurrent Login will not be allowed
+ERROR: 2021/07/16 09:45:21 email.go:114: 535 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials b184sm3239484pfg.72 - gsmtp
